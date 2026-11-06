@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>BANNA</title>
+  <meta name="description" content="Official personal website of BANNA — Home, Journal, Work, and Public Space." />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Cormorant Font Family by Christian Thalmann (Catharsis Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600;700&family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Tiny Soft Woven Fabric #D2C5B4 Background + Dark Noisy Burgundy Boxes + Crisp White Text */
+      --bg-fabric: #D2C5B4;
+      --main-burgundy: #800020;
+      --box-burgundy: #520014;
+      --box-burgundy-elevated: #630018;
+      --box-burgundy-inset: #3D000F;
+      --text-white: #FFFFFF;
+      --text-soft-white: rgba(255, 255, 255, 0.88);
+      --text-muted-white: rgba(255, 255, 255, 0.72);
+      --line-subtle: rgba(255, 255, 255, 0.24);
+      --line-faint: rgba(255, 255, 255, 0.16);
+    }
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    /* Tiny, Whisper-Soft Woven Fabric Bristles on #D2C5B4 */
+    body {
+      font-family: 'Cormorant', Georgia, serif;
+      background-color: #D2C5B4;
+      color: #FFFFFF;
+      /* Ultra-fine 6x6 micro-thread weave with soft, tiny bristles */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 6 6'%3E%3Crect width='6' height='6' fill='%23D2C5B4'/%3E%3Cpath d='M0 1h6M0 4h6' stroke='%23C9BBA9' stroke-width='0.35' opacity='0.32'/%3E%3Cpath d='M0 2.5h6M0 5.5h6' stroke='%23DBD0C1' stroke-width='0.3' opacity='0.3'/%3E%3Cpath d='M1 0v6M4 0v6' stroke='%23C9BBA9' stroke-width='0.35' opacity='0.28'/%3E%3Cpath d='M2.5 0v6M5.5 0v6' stroke='%23DBD0C1' stroke-width='0.3' opacity='0.26'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+    button, input, select, textarea {
+      font-family: 'Cormorant', Georgia, serif;
+      color: #FFFFFF;
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .font-cormorant {
+      font-family: 'Cormorant', Georgia, serif;
+    }
+    .font-cormorant-sc {
+      font-family: 'Cormorant SC', 'Cormorant', Georgia, serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Dark Burgundy with Tactile Noise Effect for Inside of Boxes */
+    .noisy-burgundy-box {
+      background-color: var(--box-burgundy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.08  0 0 0 0 0  0 0 0 0 0.02  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='110' height='110' filter='url(%23n)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+    }
+
+    .noisy-burgundy-inset {
+      background-color: var(--box-burgundy-inset);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.05  0 0 0 0 0  0 0 0 0 0.01  0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='110' height='110' filter='url(%23n2)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+    }
+
+    /* Fixed Top-Center Free-Floating Signature with 100% Transparent Background */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background-color: transparent;
+      border: none;
+      pointer-events: none;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+    }
+    #navbar button,
+    #navbar nav a,
+    #navbar nav button {
+      pointer-events: auto;
+    }
+    #navbar.header-hidden {
+      transform: translateY(-105%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Mobile Bottom Page Bar (Dark Burgundy with Noise & White Text) */
+    #mobile-bottom-nav {
+      background-color: #4A0012;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cfilter id='mn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.06  0 0 0 0 0  0 0 0 0 0.01  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23mn)'/%3E%3C/svg%3E");
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    #mobile-bottom-nav.header-hidden {
+      transform: translateY(110%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Gradual Pop-Up Animation for All Titles */
+    @keyframes titlePopGradual {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+      60% {
+        opacity: 0.92;
+        transform: translateY(-2px) scale(1.005);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .gradual-title {
+      opacity: 0;
+      animation: titlePopGradual 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.18s; }
+    .delay-3 { animation-delay: 0.28s; }
+    .delay-4 { animation-delay: 0.38s; }
+
+    /* Elegant Animated Photo Reveal (Dark Noisy Burgundy Curtain Unveil + Soft Focus & Gentle Zoom) */
+    @keyframes elegantPhotoUnveil {
+      0% {
+        opacity: 0;
+        transform: scale(1.06) translateY(10px);
+        filter: blur(6px) brightness(0.7);
+      }
+      65% {
+        opacity: 0.95;
+        filter: blur(0px) brightness(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px) brightness(1);
+      }
+    }
+    @keyframes curtainSlideAway {
+      0% {
+        transform: scaleX(1);
+      }
+      100% {
+        transform: scaleX(0);
+      }
+    }
+    .elegant-photo-frame {
+      position: relative;
+      overflow: hidden;
+      background-color: #3D000F;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+    .elegant-photo-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: #520014;
+      transform-origin: right center;
+      animation: curtainSlideAway 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      pointer-events: none;
+    }
+    .elegant-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: elegantPhotoUnveil 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.6s ease;
+    }
+    .comfortable-card:hover .elegant-photo-img,
+    .elegant-photo-frame:hover .elegant-photo-img {
+      transform: scale(1.04);
+    }
+
+    /* Page View Transition */
+    @keyframes pageEnterSoft {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .page-view {
+      display: none;
+    }
+    .page-view.active-page {
+      display: block;
+      animation: pageEnterSoft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Inside of Boxes: Dark Burgundy (#520014 / #800020) with Tactile Noise & White Text */
+    .comfortable-card {
+      position: relative;
+      background-color: var(--box-burgundy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='cn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.08  0 0 0 0 0  0 0 0 0 0.02  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23cn)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 28px -10px rgba(61, 0, 15, 0.45);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .comfortable-card:hover {
+      border-color: rgba(255, 255, 255, 0.55);
+      background-color: var(--box-burgundy-elevated);
+      transform: translateY(-3px);
+    }
+    .deco-tick-tl {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 11px;
+      height: 11px;
+      border-top: 2px solid #FFFFFF;
+      border-left: 2px solid #FFFFFF;
+      pointer-events: none;
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .deco-tick-br {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 11px;
+      height: 11px;
+      border-bottom: 2px solid #FFFFFF;
+      border-right: 2px solid #FFFFFF;
+      pointer-events: none;
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .comfortable-card:hover .deco-tick-tl,
+    .comfortable-card:hover .deco-tick-br {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* Yohji Asymmetric Left-Border Card in Dark Noisy Burgundy */
+    .yohji-card {
+      position: relative;
+      background-color: var(--box-burgundy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='yn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.08  0 0 0 0 0  0 0 0 0 0.02  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23yn)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+      border-top: 1px solid var(--line-faint);
+      border-right: 1px solid var(--line-faint);
+      border-bottom: 1px solid var(--line-faint);
+      border-left: 3px solid #FFFFFF;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.45s ease;
+    }
+    .yohji-card:hover {
+      background-color: var(--box-burgundy-elevated);
+      transform: translateY(-3px);
+    }
+
+    /* Dark Noisy Burgundy Buttons with Crisp White Text */
+    .btn-ivory {
+      background-color: var(--main-burgundy);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='bn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1  0 0 0 0 0  0 0 0 0 0.02  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23bn)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-ivory:hover {
+      background-color: #3D000F;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+    .btn-outline-visible {
+      background-color: var(--box-burgundy-inset);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='bn2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.06  0 0 0 0 0  0 0 0 0 0.01  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23bn2)'/%3E%3C/svg%3E");
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-outline-visible:hover {
+      background-color: var(--main-burgundy);
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    /* Page Nav Tab Styling (Dark Noisy Burgundy Boxes with White Text) */
+    .page-tab-btn {
+      position: relative;
+      background-color: var(--box-burgundy-inset);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cfilter id='tn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.06  0 0 0 0 0  0 0 0 0 0.01  0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23tn)'/%3E%3C/svg%3E");
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      transition: all 0.3s ease;
+    }
+    .page-tab-btn:hover {
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+    .page-tab-btn.active-tab {
+      background-color: var(--main-burgundy);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    /* Self-Drawing Signature Stroke */
+    @keyframes drawSignatureStroke {
+      0% { stroke-dashoffset: 4200; fill-opacity: 0; }
+      65% { stroke-dashoffset: 0; fill-opacity: 0.25; }
+      100% { stroke-dashoffset: 0; fill-opacity: 1; }
+    }
+    .sig-animated-path {
+      stroke-dasharray: 4200;
+      stroke-dashoffset: 0;
+      animation: drawSignatureStroke 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes floatSignature {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .signature-free-float {
+      animation: floatSignature 6.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body id="app-body" class="bg-[#D2C5B4] text-[#FFFFFF] min-h-screen flex flex-col relative overflow-x-hidden text-lg leading-relaxed selection:bg-[#800020] selection:text-[#FFFFFF]">
+
+  <!-- Global SVG Filter Definition for Noisy #800020 Burgundy Ink -->
+  <svg class="pointer-events-none fixed w-0 h-0" aria-hidden="true">
+    <defs>
+      <filter id="burgundy-noise-filter" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.2 0" in="noise" result="softNoise" />
+        <feComposite operator="in" in="softNoise" in2="SourceGraphic" result="textured" />
+        <feBlend mode="multiply" in="SourceGraphic" in2="textured" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Ultra-Fine, Soft Micro-Fiber Overlay on #D2C5B4 Background -->
+  <div class="pointer-events-none fixed inset-0 z-0 opacity-[0.06]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23f)' opacity='0.5'/%3E%3C/svg%3E&quot;);"></div>
+
+  <!-- Static Background Placeholders -->
+  <canvas id="amano-live-canvas" class="hidden pointer-events-none fixed inset-0 z-0"></canvas>
+  <div id="ambient-bg" class="hidden pointer-events-none fixed inset-0 z-0">
+    <svg id="amano-bg-svg" viewBox="0 0 1440 900"></svg>
+  </div>
+
+  <!-- FIXED TOP-CENTER FREE-FLOATING SIGNATURE LOGO (100% Transparent Background, Floats by Itself, Hides on Scroll Down) -->
+  <header id="navbar" aria-label="Top Floating Signature Logo">
+    <div class="max-w-5xl mx-auto px-4 pt-4 pb-2 flex items-center justify-center relative">
+      <span id="nav-name" class="sr-only">BANNA</span>
+      <span id="nav-tagline" class="sr-only">Personal Space</span>
+
+      <!-- Pure Free-Floating Banna Vector Signature Centered at the Top -->
+      <button
+        id="top-logo-home-btn"
+        type="button"
+        data-goto-page="home"
+        class="page-switch-trigger mx-auto flex items-center justify-center py-1 bg-transparent border-0 focus:outline-none group"
+        title="BANNA — Return to Home"
+      >
+        <div id="nav-logo-wrap" class="flex items-center justify-center bg-transparent">
+          <div id="nav-svg-holder" class="signature-free-float w-44 sm:w-56 h-12 sm:h-14 flex items-center justify-center transition-transform duration-500 group-hover:scale-105"></div>
+          <span id="avatar-badge" class="sr-only">BA</span>
+        </div>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE BOTTOM NAVIGATION BAR (Dark Burgundy with Noise & White Text) -->
+  <nav id="mobile-bottom-nav" aria-label="Mobile Page Navigation" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/25 px-2 py-1.5 flex items-center justify-around">
+    <button type="button" data-goto-page="home" class="mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white font-bold border-t-2 border-white min-h-[44px]">
+      <span class="b-mini-slot w-4 h-3.5 inline-flex items-center mb-0.5"></span>
+      <span class="font-cormorant-sc text-[11px] uppercase tracking-wider text-white">Home</span>
+    </button>
+    <button type="button" data-goto-page="journal" class="mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white/75 min-h-[44px]">
+      <span class="b-mini-slot w-4 h-3.5 inline-flex items-center mb-0.5"></span>
+      <span class="font-cormorant-sc text-[11px] uppercase tracking-wider text-white">Journal</span>
+    </button>
+    <button type="button" data-goto-page="work" class="mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white/75 min-h-[44px]">
+      <span class="b-mini-slot w-4 h-3.5 inline-flex items-center mb-0.5"></span>
+      <span class="font-cormorant-sc text-[11px] uppercase tracking-wider text-white">Work</span>
+    </button>
+    <button type="button" data-goto-page="salon" class="mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white/75 min-h-[44px]">
+      <span class="b-mini-slot w-4 h-3.5 inline-flex items-center mb-0.5"></span>
+      <span class="font-cormorant-sc text-[11px] uppercase tracking-wider text-white">Public Space</span>
+    </button>
+  </nav>
+
+  <!-- Toast Banner for Feedback (Dark Noisy Burgundy with White Text) -->
+  <div id="toast-banner" class="hidden fixed bottom-16 sm:bottom-6 right-4 sm:right-6 z-50 noisy-burgundy-box text-white text-base font-semibold px-5 py-3 border border-white/40 flex items-center gap-3 shadow-2xl">
+    <span class="b-mini-slot w-5 h-4 inline-flex items-center"></span>
+    <span id="toast-text" class="text-white">Published!</span>
+  </div>
+
+  <!-- Journal & Photo Reader Modal (Inside of Box is Dark Burgundy with Noise & White Text) -->
+  <div id="project-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div id="project-modal-card" class="comfortable-card max-w-2xl w-full p-6 sm:p-10 space-y-5 my-8 text-white">
+      <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+      <div class="flex items-start justify-between gap-3 border-b border-white/25 pb-4">
+        <div class="flex items-center gap-3.5">
+          <span id="modal-proj-icon" class="w-12 h-10 noisy-burgundy-inset border border-white/35 flex items-center justify-center p-1.5"></span>
+          <div>
+            <span id="modal-proj-cat" class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.2em] text-white/80">Journal</span>
+            <h3 id="modal-proj-title" class="font-cormorant text-2xl sm:text-3xl font-bold mt-0.5 text-white">Entry Title</h3>
+          </div>
+        </div>
+        <button id="close-modal-btn" type="button" class="w-9 h-9 border border-white/40 text-white hover:bg-[#800020] flex items-center justify-center text-sm">✕</button>
+      </div>
+
+      <!-- Animated Photo Container inside Modal -->
+      <div id="modal-photo-wrap" class="hidden elegant-photo-frame aspect-[16/10] w-full">
+        <img id="modal-photo-img" src="" alt="Journal visual" class="elegant-photo-img" />
+      </div>
+
+      <p id="modal-proj-desc" class="font-cormorant text-xl sm:text-2xl leading-relaxed text-white"></p>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="modal-done-btn" type="button" class="font-cormorant-sc text-xs font-bold uppercase tracking-widest px-5 py-2.5 btn-ivory min-h-[42px]">Done Reading</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MULTI-PAGE CONTAINER -->
+  <main class="max-w-5xl w-full mx-auto px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-28 sm:pb-20 flex-1 relative z-10">
+
+    <!-- In-Flow Multi-Page Navigation (Dark Burgundy Noisy Pills with White Text) -->
+    <div class="mb-10 pb-4 border-b border-[#800020]/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <nav aria-label="Standalone Pages" class="w-full sm:w-auto">
+        <div class="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 overflow-x-auto no-scrollbar py-0.5">
+          <button type="button" data-goto-page="home" class="page-tab-btn active-tab page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] px-4 py-1.5 whitespace-nowrap min-h-[40px] flex items-center gap-2">
+            <span class="b-mini-slot w-4 h-3.5 inline-flex items-center"></span>
+            <span>Home</span>
+          </button>
+          <button type="button" data-goto-page="journal" class="page-tab-btn page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] px-4 py-1.5 whitespace-nowrap min-h-[40px] flex items-center gap-2">
+            <span class="b-mini-slot w-4 h-3.5 inline-flex items-center"></span>
+            <span>Journal</span>
+          </button>
+          <button type="button" data-goto-page="work" class="page-tab-btn page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] px-4 py-1.5 whitespace-nowrap min-h-[40px] flex items-center gap-2">
+            <span class="b-mini-slot w-4 h-3.5 inline-flex items-center"></span>
+            <span>Work</span>
+          </button>
+          <button type="button" data-goto-page="salon" class="page-tab-btn page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] px-4 py-1.5 whitespace-nowrap min-h-[40px] flex items-center gap-2">
+            <span class="b-mini-slot w-4 h-3.5 inline-flex items-center"></span>
+            <span>Public Space</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="flex items-center gap-2 self-end sm:self-center">
+        <button id="toggle-customize-btn" type="button" class="font-cormorant-sc text-xs font-semibold uppercase tracking-[0.18em] px-3 py-1.5 btn-outline-visible min-h-[36px]">
+          Customize Info
+        </button>
+        <button id="visitor-mode-btn" type="button" class="font-cormorant-sc text-xs font-semibold uppercase tracking-[0.18em] px-3 py-1.5 btn-outline-visible min-h-[36px]">
+          👁 Visitor View
+        </button>
+      </div>
+    </div>
+
+    <!-- Collapsible Site Studio Drawer (Inside of Box is Dark Noisy Burgundy with White Text) -->
+    <section id="customize-panel" class="hidden comfortable-card p-6 sm:p-8 mb-12 space-y-6 text-white">
+      <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/25 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="b-title-slot w-8 h-6 inline-flex items-center"></span>
+          <div>
+            <span class="font-cormorant-sc text-xs uppercase tracking-[0.24em] text-white/80 block">Publishing Studio</span>
+            <h2 class="font-cormorant text-2xl sm:text-3xl font-bold text-white">Customize &amp; Export Publishable Website</h2>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <button id="download-html-btn" type="button" class="font-cormorant-sc text-xs font-bold uppercase tracking-wider px-4 py-2 btn-ivory min-h-[40px]">
+            ⬇ Export index.html
+          </button>
+          <button id="reset-profile-btn" type="button" class="font-cormorant italic text-base text-white/85 hover:text-white underline">Reset defaults</button>
+        </div>
+      </div>
+
+      <!-- Studio Pickers -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 noisy-burgundy-inset border border-white/25">
+          <label class="block font-cormorant-sc text-xs uppercase tracking-[0.18em] text-white/85 mb-2">1. Signature Flourish</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" data-logo="hexagon" class="logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span>⬢</span> <span>Hex Crest</span>
+            </button>
+            <button type="button" data-logo="crown" class="logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-ivory transition flex items-center gap-1.5">
+              <span>♔</span> <span>Royal Shield</span>
+            </button>
+            <button type="button" data-logo="orbital" class="logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span>◎</span> <span>Tech Orbit</span>
+            </button>
+            <button type="button" data-logo="slash" class="logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span>⚡</span> <span>Cyber Slash</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 noisy-burgundy-inset border border-white/25">
+          <label class="block font-cormorant-sc text-xs uppercase tracking-[0.18em] text-white/85 mb-2">2. Dark Burgundy Depth</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button type="button" data-palette="indigo" class="palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-ivory transition flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 bg-[#800020] border border-white/50"></span> <span>Indigo</span>
+            </button>
+            <button type="button" data-palette="emerald" class="palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 bg-[#630018] border border-white/50"></span> <span>Emerald</span>
+            </button>
+            <button type="button" data-palette="amber" class="palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 bg-[#70001C] border border-white/50"></span> <span>Gold</span>
+            </button>
+            <button type="button" data-palette="rose" class="palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 bg-[#580016] border border-white/50"></span> <span>Rose</span>
+            </button>
+            <button type="button" data-palette="cyan" class="palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 bg-[#450011] border border-white/50"></span> <span>Ocean</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 noisy-burgundy-inset border border-white/25">
+          <label class="block font-cormorant-sc text-xs uppercase tracking-[0.18em] text-white/85 mb-2">3. Card Frame Style</label>
+          <div class="grid grid-cols-1 gap-1.5">
+            <button type="button" data-vibe="glass" class="vibe-btn text-xs sm:text-sm font-semibold px-3 py-1.5 btn-ivory transition text-left flex items-center justify-between">
+              <span>✨ Glass Glow (Modern)</span>
+              <span class="text-xs">Active</span>
+            </button>
+            <button type="button" data-vibe="bento" class="vibe-btn text-xs sm:text-sm font-semibold px-3 py-1.5 btn-outline-visible transition text-left flex items-center justify-between">
+              <span>▣ Architectural Bento</span>
+              <span class="text-xs">Crisp</span>
+            </button>
+            <button type="button" data-vibe="neon" class="vibe-btn text-xs sm:text-sm font-semibold px-3 py-1.5 btn-outline-visible transition text-left flex items-center justify-between">
+              <span>🌌 Bold Spotlight Halo</span>
+              <span class="text-xs">Vibrant</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+        <div>
+          <label for="input-name" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Your Name</label>
+          <input id="input-name" type="text" value="BANNA" placeholder="Enter your name" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 focus:outline-none text-white noisy-burgundy-inset" />
+        </div>
+        <div>
+          <label for="input-role" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Personal Philosophy / Subtitle</label>
+          <input id="input-role" type="text" value="Poetic Minimalism, Line &amp; Silence" placeholder="Enter your motto" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 focus:outline-none text-white noisy-burgundy-inset" />
+        </div>
+        <div>
+          <label for="input-email" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Personal Address</label>
+          <input id="input-email" type="text" value="banna@sanctuary.me" placeholder="you@example.com" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 focus:outline-none text-white noisy-burgundy-inset" />
+        </div>
+        <div class="sm:col-span-3">
+          <label for="input-bio" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Personal Introduction</label>
+          <textarea id="input-bio" rows="2" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 focus:outline-none text-white noisy-burgundy-inset">Welcome to the personal space of BANNA — a living archive of visual journal entries, creative works, and open public discussions.</textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 1: HOME (Preview Feed of Everything New BANNA Publishes)       -->
+    <!-- =================================================================== -->
+    <div id="page-home" data-page="home" class="page-view active-page space-y-12">
+
+      <section id="hero-card" class="comfortable-card p-7 sm:p-12 lg:p-14 space-y-10 text-white">
+        <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+          <!-- Left Column: Gradual Pop-Up Titles in Crisp White with White 'B' Monogram -->
+          <div class="space-y-6 max-w-2xl">
+            <div class="gradual-title delay-1 flex items-center gap-3">
+              <span class="b-title-slot w-8 h-6 inline-flex items-center shrink-0"></span>
+              <span class="font-cormorant-sc text-xs sm:text-sm tracking-[0.26em] text-white/85 uppercase font-bold">
+                Home · <span id="display-name" class="text-white font-bold">BANNA</span>
+              </span>
+            </div>
+
+            <h1 id="display-role" class="gradual-title delay-2 font-cormorant italic text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-wide text-white leading-[1.15]">
+              Poetic Minimalism, Line &amp; Silence
+            </h1>
+
+            <p id="display-bio" class="gradual-title delay-3 font-cormorant text-xl sm:text-2xl leading-relaxed text-white/90">
+              Welcome to the personal space of BANNA — a living archive of visual journal entries, creative works, and open public discussions.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="gradual-title delay-4 flex flex-wrap items-center gap-3.5 pt-2">
+              <button type="button" data-goto-page="journal" class="page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-bold uppercase tracking-[0.2em] px-6 py-3 btn-ivory min-h-[44px]">
+                Publish in Journal →
+              </button>
+              <button type="button" data-goto-page="salon" class="page-switch-trigger font-cormorant-sc text-xs sm:text-sm font-bold uppercase tracking-[0.2em] px-6 py-3 btn-outline-visible min-h-[44px]">
+                Open Public Space →
+              </button>
+              <button id="replay-sig-btn" type="button" class="font-cormorant-sc text-xs uppercase tracking-[0.18em] px-4 py-3 btn-outline-visible min-h-[44px]">
+                ✒ Redraw Signature
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Free-Floating Vector Signature Showcase in Crisp White inside the Dark Noisy Burgundy Hero Box -->
+          <div class="w-full lg:w-auto flex flex-col items-center justify-center py-4">
+            <div id="hero-svg-holder" class="w-60 sm:w-72 md:w-80 flex items-center justify-center cursor-pointer" title="Click to redraw signature"></div>
+            <span id="hero-initials" class="sr-only">BA</span>
+            <div class="mt-3 text-center">
+              <span id="logo-wordmark" class="font-cormorant-sc text-xs tracking-[0.35em] text-white font-bold uppercase block">BANNA</span>
+              <span id="logo-style-caption" class="font-cormorant italic text-sm text-white/80 block">Free-Floating Vector Signature</span>
+            </div>
+            <button id="cycle-logo-btn" type="button" class="mt-2 font-cormorant-sc text-xs uppercase tracking-[0.18em] text-white/85 hover:text-white flex items-center gap-1.5 transition min-h-[36px]">
+              <span>↻ Click to switch logo emblem</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Home Live Counters (Dark Noisy Burgundy Inset Boxes with White Text) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/25">
+          <button type="button" data-goto-page="journal" class="page-switch-trigger text-left p-4 noisy-burgundy-inset border border-white/25 hover:border-white transition flex items-center justify-between">
+            <div>
+              <span class="font-cormorant-sc uppercase tracking-[0.2em] text-white/80 text-xs font-bold block">Journal</span>
+              <span id="stat-projects-count" class="font-cormorant text-2xl sm:text-3xl font-bold text-white">3</span>
+              <span class="font-cormorant italic text-base text-white/85 ml-1.5">Published Notes</span>
+            </div>
+            <span class="b-title-slot w-7 h-5 inline-flex items-center"></span>
+          </button>
+
+          <button type="button" data-goto-page="work" class="page-switch-trigger text-left p-4 noisy-burgundy-inset border border-white/25 hover:border-white transition flex items-center justify-between">
+            <div>
+              <span class="font-cormorant-sc uppercase tracking-[0.2em] text-white/80 text-xs font-bold block">Work</span>
+              <span id="stat-skills-count" class="font-cormorant text-2xl sm:text-3xl font-bold text-white">3</span>
+              <span class="font-cormorant italic text-base text-white/85 ml-1.5">Studies</span>
+            </div>
+            <span class="b-title-slot w-7 h-5 inline-flex items-center"></span>
+          </button>
+
+          <div class="p-4 noisy-burgundy-inset border border-white/25 flex items-center justify-between">
+            <div>
+              <span class="font-cormorant-sc uppercase tracking-[0.2em] text-white/80 text-xs font-bold block">Atmosphere</span>
+              <button id="mood-cycle-btn" type="button" class="font-cormorant italic text-xl sm:text-2xl text-white hover:text-white/80 transition text-left">
+                <span id="mood-text">Nocturnal Calm</span>
+              </button>
+            </div>
+            <span class="b-title-slot w-7 h-5 inline-flex items-center"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOME PREVIEW STREAM: Live Preview of Everything New Published Across Journal, Work & Public Space -->
+      <section class="space-y-8">
+        <!-- Header Box in Dark Noisy Burgundy so Text is Always Crisp White -->
+        <div class="comfortable-card p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+          <div class="gradual-title delay-2 flex items-center gap-3.5">
+            <span class="b-title-slot w-9 h-7 inline-flex items-center shrink-0"></span>
+            <div>
+              <span class="font-cormorant italic text-base sm:text-lg text-white/80 block">Live Dispatch from Journal, Work &amp; Public Space</span>
+              <h2 class="font-cormorant text-2xl sm:text-4xl font-bold text-white">Latest Published on BANNA</h2>
+            </div>
+          </div>
+          <button type="button" data-goto-page="journal" class="page-switch-trigger font-cormorant-sc text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-white/80 underline self-start sm:self-end">
+            View Full Journal →
+          </button>
+        </div>
+
+        <!-- Dynamic Home Preview Feed (Dark Noisy Burgundy Cards with White Text) -->
+        <div id="home-latest-journal-preview" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+        <!-- Latest Work & Latest Public Space Preview Row on Home -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <div class="comfortable-card p-6 sm:p-8 flex flex-col justify-between space-y-4 text-white">
+            <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between border-b border-white/25 pb-2">
+                <div class="flex items-center gap-2.5">
+                  <span class="b-title-slot w-6 h-5 inline-flex items-center"></span>
+                  <span class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.22em] text-white/85">Latest in Work</span>
+                </div>
+                <span class="font-cormorant italic text-sm text-white/80">Study Preview</span>
+              </div>
+              <h3 id="home-work-preview-title" class="gradual-title delay-2 font-cormorant text-2xl sm:text-3xl font-bold text-white">Soft Woven Fabric (#D2C5B4) &amp; Dark Noisy Burgundy (#800020)</h3>
+              <p id="home-work-preview-desc" class="font-cormorant text-lg sm:text-xl text-white/90">Tiny, soft woven linen fabric threads outside, paired with dark noisy burgundy interiors and crisp white Cormorant typography inside every box.</p>
+            </div>
+            <div class="pt-2">
+              <button type="button" data-goto-page="work" class="page-switch-trigger font-cormorant-sc text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 btn-outline-visible">
+                Open Work Page →
+              </button>
+            </div>
+          </div>
+
+          <div class="comfortable-card p-6 sm:p-8 flex flex-col justify-between space-y-4 text-white">
+            <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between border-b border-white/25 pb-2">
+                <div class="flex items-center gap-2.5">
+                  <span class="b-title-slot w-6 h-5 inline-flex items-center"></span>
+                  <span class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.22em] text-white/85">Latest in Public Space</span>
+                </div>
+                <span id="home-salon-preview-topic" class="font-cormorant italic text-sm text-white/80">Public Guest Box</span>
+              </div>
+              <h3 id="home-salon-preview-author" class="gradual-title delay-3 font-cormorant text-2xl sm:text-3xl font-bold text-white">Sora T.</h3>
+              <p id="home-salon-preview-text" class="font-cormorant italic text-lg sm:text-xl text-white/90">"The dark noisy burgundy boxes with crisp white text resting on the soft woven #D2C5B4 linen background look extraordinary."</p>
+            </div>
+            <div class="pt-2">
+              <button type="button" data-goto-page="salon" class="page-switch-trigger font-cormorant-sc text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 btn-outline-visible">
+                Publish a Guest Request →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="explainer-card" class="hidden"></section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 2: JOURNAL (Dark Noisy Burgundy Boxes with White Text)         -->
+    <!-- =================================================================== -->
+    <div id="page-journal" data-page="journal" class="page-view space-y-10">
+      <section id="projects-section" class="space-y-8">
+        <div class="comfortable-card p-6 sm:p-10 text-white">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div class="space-y-2">
+              <span class="gradual-title delay-1 font-cormorant italic text-lg sm:text-xl text-white/80 block">Visual Essays, Photographs &amp; Notebooks</span>
+              <div class="gradual-title delay-2 flex items-center gap-3.5">
+                <span class="b-title-slot w-10 h-8 inline-flex items-center shrink-0"></span>
+                <h2 class="font-cormorant text-3xl sm:text-5xl font-bold text-white">Journal</h2>
+              </div>
+            </div>
+
+            <div class="gradual-title delay-3 flex flex-wrap items-center gap-2">
+              <div id="filter-group" class="flex flex-wrap gap-1.5">
+                <button type="button" data-filter="all" class="filter-btn font-cormorant-sc text-xs font-bold uppercase tracking-wider px-3.5 py-2 btn-ivory transition min-h-[40px]">All (3)</button>
+                <button type="button" data-filter="Web App" class="filter-btn font-cormorant-sc text-xs font-bold uppercase tracking-wider px-3.5 py-2 btn-outline-visible transition min-h-[40px]">Web App</button>
+                <button type="button" data-filter="Design" class="filter-btn font-cormorant-sc text-xs font-bold uppercase tracking-wider px-3.5 py-2 btn-outline-visible transition min-h-[40px]">Design</button>
+              </div>
+              <button id="toggle-add-project-btn" type="button" class="font-cormorant-sc text-xs font-bold uppercase tracking-wider px-4 py-2 btn-ivory transition min-h-[40px]">
+                + Add Project
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Write & Publish New Journal Entry + Photo Upload Form -->
+        <form id="add-project-form" class="hidden comfortable-card p-6 sm:p-8 space-y-5 text-white">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+          <div class="flex items-center justify-between border-b border-white/25 pb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="b-title-slot w-7 h-5 inline-flex items-center"></span>
+              <h3 class="font-cormorant-sc text-sm font-bold uppercase tracking-widest text-white">Publish a New Journal Entry &amp; Photo</h3>
+            </div>
+            <button id="close-project-form-btn" type="button" class="text-sm text-white/80 hover:text-white">Close ✕</button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="sm:col-span-2">
+              <label for="proj-title-input" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Entry Title</label>
+              <input id="proj-title-input" type="text" required placeholder="e.g. Velvet Burgundy &amp; Linen" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white noisy-burgundy-inset" />
+            </div>
+            <div>
+              <label for="proj-category-input" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Notebook Shelf</label>
+              <select id="proj-category-input" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white noisy-burgundy-inset">
+                <option value="Design">Aesthetics &amp; Art</option>
+                <option value="Web App">Life &amp; Thoughts</option>
+              </select>
+            </div>
+            <div class="hidden">
+              <select id="proj-icon-input">
+                <option value="B">B Monogram</option>
+              </select>
+            </div>
+
+            <!-- Photo Upload Input -->
+            <div class="sm:col-span-3 p-4 noisy-burgundy-inset border border-white/25 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label for="proj-photo-file" class="font-cormorant-sc text-xs font-bold uppercase tracking-wider text-white">
+                  Attach a Photo (Optional — animates with noisy burgundy curtain unveil)
+                </label>
+                <button id="clear-photo-btn" type="button" class="hidden text-xs font-cormorant-sc uppercase tracking-wider text-white/85 hover:text-white underline self-start">
+                  Remove Selected Photo
+                </button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input id="proj-photo-file" type="file" accept="image/*" class="text-sm text-white file:mr-3 file:py-1.5 file:px-3.5 file:border file:border-white/50 file:bg-[#800020] file:text-white file:font-cormorant-sc file:text-xs file:uppercase file:tracking-wider hover:file:bg-[#3D000F]" />
+                <input id="proj-photo-url" type="url" placeholder="Or paste an image URL (https://...)" class="w-full px-3.5 py-2 text-sm border border-white/35 text-white bg-[#520014]" />
+              </div>
+              <div id="proj-photo-preview-wrap" class="hidden elegant-photo-frame h-44 w-full sm:w-72 mt-2">
+                <img id="proj-photo-preview-img" src="" alt="Upload preview" class="elegant-photo-img" />
+              </div>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label for="proj-desc-input" class="block font-cormorant-sc text-xs uppercase tracking-wider text-white/85 mb-1">Reflection</label>
+              <textarea id="proj-desc-input" rows="3" required placeholder="Write your journal entry..." class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white noisy-burgundy-inset"></textarea>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button type="submit" class="font-cormorant-sc text-xs font-bold uppercase tracking-widest px-6 py-2.5 btn-ivory transition min-h-[42px]">
+              Save Project Card
+            </button>
+          </div>
+        </form>
+
+        <!-- Journal Cards Grid -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+        <!-- Page Bottom Navigation -->
+        <div class="flex items-center justify-between pt-6 border-t border-[#800020]/30">
+          <button type="button" data-goto-page="home" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-outline-visible">
+            ← Home
+          </button>
+          <button type="button" data-goto-page="work" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-ivory">
+            Next Page: Work →
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Hidden Inspirations Container -->
+    <div id="page-inspirations" data-page="inspirations" class="hidden" aria-hidden="true">
+      <section id="skills-section">
+        <form id="add-skill-form">
+          <input id="skill-input" type="text" />
+          <button type="submit">+ Add</button>
+        </form>
+        <div id="skills-list"></div>
+      </section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 3: WORK (Dark Noisy Burgundy Boxes with White Text)            -->
+    <!-- =================================================================== -->
+    <div id="page-work" data-page="work" class="page-view space-y-10">
+      <section id="work-section" class="space-y-8">
+        <div class="comfortable-card p-6 sm:p-10 text-white">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+          <span class="gradual-title delay-1 font-cormorant italic text-lg sm:text-xl text-white/80 block">Selected Creative Studies &amp; Personal Craft</span>
+          <div class="gradual-title delay-2 flex items-center gap-3.5 mt-2">
+            <span class="b-title-slot w-10 h-8 inline-flex items-center shrink-0"></span>
+            <h2 class="font-cormorant text-3xl sm:text-5xl font-bold text-white">Work</h2>
+          </div>
+          <p class="gradual-title delay-3 font-cormorant text-xl text-white/85 mt-2">Click any study below to unfold its full notes.</p>
+        </div>
+
+        <div id="work-studies-list" class="divide-y divide-white/20 comfortable-card px-6 sm:px-10 py-3 text-white">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+
+          <div class="py-6">
+            <button type="button" data-work-idx="0" class="work-toggle-btn w-full text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-3">
+                  <span class="b-title-slot w-7 h-5 inline-flex items-center shrink-0"></span>
+                  <span class="font-cormorant-sc text-xs font-bold tracking-[0.22em] text-white/80">STUDY 01</span>
+                  <h3 class="gradual-title delay-1 font-cormorant text-2xl sm:text-3xl font-bold text-white group-hover:translate-x-1 transition-transform">Soft Woven Fabric (#D2C5B4) &amp; Dark Noisy Burgundy (#800020)</h3>
+                </div>
+                <p class="font-cormorant text-lg sm:text-xl text-white/90">Tiny, soft woven linen bristles outside, paired with dark noisy burgundy boxes and crisp white Cormorant typography inside.</p>
+              </div>
+              <span class="font-cormorant-sc text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 border border-white/40 text-white shrink-0 self-start sm:self-center">Explore ▾</span>
+            </button>
+            <div id="work-detail-0" class="hidden mt-4 pt-4 border-t border-white/20 font-cormorant italic text-lg sm:text-xl text-white/85">
+              By scaling the `#D2C5B4` linen pattern down to ultra-fine micro-threads and filling every box interior with noisy dark burgundy (`#520014` &amp; `#800020`), the white serif text achieves effortless contrast.
+            </div>
+          </div>
+
+          <div class="py-6">
+            <button type="button" data-work-idx="1" class="work-toggle-btn w-full text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-3">
+                  <span class="b-title-slot w-7 h-5 inline-flex items-center shrink-0"></span>
+                  <span class="font-cormorant-sc text-xs font-bold tracking-[0.22em] text-white/80">STUDY 02</span>
+                  <h3 class="gradual-title delay-2 font-cormorant text-2xl sm:text-3xl font-bold text-white group-hover:translate-x-1 transition-transform">Calligraphic 'B' Monogram &amp; Vector Signature</h3>
+                </div>
+                <p class="font-cormorant text-lg sm:text-xl text-white/90">Extracting the standalone 'B' from BANNA's handwritten signature as a white typographic motif inside every box.</p>
+              </div>
+              <span class="font-cormorant-sc text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 border border-white/40 text-white shrink-0 self-start sm:self-center">Explore ▾</span>
+            </button>
+            <div id="work-detail-1" class="hidden mt-4 pt-4 border-t border-white/20 font-cormorant italic text-lg sm:text-xl text-white/85">
+              Instead of generic icons or stars, every heading across the site is anchored by the actual calligraphic 'B' traced directly from BANNA's handwritten mark.
+            </div>
+          </div>
+
+          <div class="py-6">
+            <button type="button" data-work-idx="2" class="work-toggle-btn w-full text-left flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-3">
+                  <span class="b-title-slot w-7 h-5 inline-flex items-center shrink-0"></span>
+                  <span class="font-cormorant-sc text-xs font-bold tracking-[0.22em] text-white/80">STUDY 03</span>
+                  <h3 class="gradual-title delay-3 font-cormorant text-2xl sm:text-3xl font-bold text-white group-hover:translate-x-1 transition-transform">Multi-Page Room Architecture (Android, iOS &amp; Desktop)</h3>
+                </div>
+                <p class="font-cormorant text-lg sm:text-xl text-white/90">Separating each segment into its own calm room with a scroll-hiding top signature bar.</p>
+              </div>
+              <span class="font-cormorant-sc text-xs uppercase tracking-[0.2em] px-3.5 py-1.5 border border-white/40 text-white shrink-0 self-start sm:self-center">Explore ▾</span>
+            </button>
+            <div id="work-detail-2" class="hidden mt-4 pt-4 border-t border-white/20 font-cormorant italic text-lg sm:text-xl text-white/85">
+              Designed for comfortable reading across phones, tablets, and desktop monitors, with automatic header hiding when scrolling downward.
+            </div>
+          </div>
+        </div>
+
+        <!-- Page Bottom Navigation -->
+        <div class="flex items-center justify-between pt-6 border-t border-[#800020]/30">
+          <button type="button" data-goto-page="journal" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-outline-visible">
+            ← Previous: Journal
+          </button>
+          <button type="button" data-goto-page="salon" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-ivory">
+            Next Page: Public Space →
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- PAGE 4: PUBLIC SPACE FOR COMMENTS & GUEST REQUESTS                  -->
+    <!-- =================================================================== -->
+    <div id="page-salon" data-page="salon" class="page-view space-y-10">
+      <section id="contact-section" class="comfortable-card p-6 sm:p-10 space-y-8 text-white">
+        <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 border-b border-white/25 pb-6">
+          <div class="space-y-2 max-w-2xl">
+            <span class="gradual-title delay-1 font-cormorant italic text-lg sm:text-xl text-white/80 block">Publishable Guest Box Requests, Reader Letters &amp; Dialogue</span>
+            <div class="gradual-title delay-2 flex items-center gap-3.5">
+              <span class="b-title-slot w-10 h-8 inline-flex items-center shrink-0"></span>
+              <h2 class="font-cormorant text-3xl sm:text-4xl font-bold text-white">Public Space for Comments &amp; Discussions</h2>
+            </div>
+            <p class="gradual-title delay-3 font-cormorant text-lg sm:text-xl text-white/90">
+              Publish a guest request or comment below, or write directly to <span id="display-email" class="font-bold underline text-white">banna@sanctuary.me</span>
+            </p>
+          </div>
+          <button id="copy-email-btn" type="button" class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.18em] px-5 py-3 btn-outline-visible transition shrink-0 min-h-[44px]">
+            📋 Copy Contact Info
+          </button>
+        </div>
+
+        <!-- Interactive Publishable Guest Box & Discussions -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <form id="guestbook-form" class="lg:col-span-5 space-y-4 noisy-burgundy-inset p-5 sm:p-6 border border-white/25 text-white">
+            <div class="flex items-center gap-2.5">
+              <span class="b-title-slot w-6 h-5 inline-flex items-center"></span>
+              <h3 class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.22em] text-white">Publish a Guest Box Request or Comment</h3>
+            </div>
+            <div>
+              <label for="guest-name" class="block font-cormorant-sc text-xs font-bold uppercase tracking-wider text-white/85 mb-1">Your Name</label>
+              <input id="guest-name" type="text" required placeholder="Enter your name" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white bg-[#520014] min-h-[44px]" />
+            </div>
+            <div>
+              <label for="guest-topic" class="block font-cormorant-sc text-xs font-bold uppercase tracking-wider text-white/85 mb-1">Request / Discussion Type</label>
+              <select id="guest-topic" class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white bg-[#520014] min-h-[44px]">
+                <option value="Guest Request">Guest Request</option>
+                <option value="Art & Aesthetics">Art &amp; Aesthetics</option>
+                <option value="Journal Reflection">Journal Reflection</option>
+                <option value="Public Discussion">Public Discussion</option>
+              </select>
+            </div>
+            <div>
+              <label for="guest-photo-file" class="block font-cormorant-sc text-xs font-bold uppercase tracking-wider text-white/85 mb-1">Attach Photo (Optional)</label>
+              <input id="guest-photo-file" type="file" accept="image/*" class="w-full text-xs text-white file:mr-2.5 file:py-1.5 file:px-3 file:border file:border-white/50 file:bg-[#800020] file:text-white file:font-cormorant-sc file:uppercase" />
+            </div>
+            <div>
+              <label for="guest-msg" class="block font-cormorant-sc text-xs font-bold uppercase tracking-wider text-white/85 mb-1">Your Request or Comment</label>
+              <textarea id="guest-msg" rows="3" required placeholder="Write your guest request or discussion note to publish..." class="w-full px-3.5 py-2.5 text-base font-semibold border border-white/35 text-white bg-[#520014]"></textarea>
+            </div>
+            <button type="submit" class="w-full font-cormorant-sc text-xs font-bold uppercase tracking-widest px-6 py-3 btn-ivory transition min-h-[44px]">
+              Post to Guestbook
+            </button>
+          </form>
+
+          <div class="lg:col-span-7 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <span class="b-title-slot w-6 h-5 inline-flex items-center"></span>
+                <h3 class="font-cormorant-sc text-xs font-bold uppercase tracking-[0.22em] text-white">Published Guest Requests &amp; Discussions</h3>
+              </div>
+              <span class="font-cormorant italic text-sm text-white/80">Live &amp; Publishable</span>
+            </div>
+            <div id="guestbook-list" class="space-y-4"></div>
+          </div>
+        </div>
+
+        <!-- Page Bottom Navigation -->
+        <div class="flex items-center justify-between pt-6 border-t border-white/25">
+          <button type="button" data-goto-page="work" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-outline-visible">
+            ← Previous: Work
+          </button>
+          <button type="button" data-goto-page="home" class="page-switch-trigger font-cormorant-sc text-xs uppercase tracking-[0.2em] px-4 py-2.5 btn-ivory">
+            Return to Home →
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Hidden Compatibility Elements -->
+    <div class="hidden" aria-hidden="true">
+      <button id="sidebar-edge-trigger" type="button">Spaces · I–IV ›</button>
+      <div id="sidebar-arrow-indicator">›</div>
+      <div id="sidebar-backdrop"></div>
+      <aside id="feature-sidebar">
+        <button id="close-sidebar-btn" type="button">‹</button>
+      </aside>
+      <button id="top-open-sidebar-btn" type="button">☰ Open Spaces (Journal · Inspirations · Work · Public Space)</button>
+      <button id="motion-mode-btn" type="button"><span id="motion-mode-label">Motion: Poetic Flow</span></button>
+      <button id="theme-btn" type="button"><span id="theme-icon">🌙</span> <span id="theme-label">Dark Mode</span></button>
+    </div>
+
+  </main>
+
+  <!-- Minimalist Footer: Dark Noisy Burgundy Bar with White Text — ONLY the year and BANNA -->
+  <footer class="noisy-burgundy-box border-t border-white/20 py-7 mb-14 sm:mb-0 text-center font-cormorant-sc text-xs uppercase tracking-[0.28em] text-white relative z-10">
+    © 2026 <span id="footer-name" class="font-bold text-white">BANNA</span>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const BANNA_SIGNATURE_PATH = "M 892 274 L 891 273 L 888 273 L 883 277 L 879 279 L 876 282 L 862 289 L 859 289 L 858 290 L 852 289 L 845 283 L 844 279 L 843 278 L 843 274 L 842 273 L 843 252 L 840 249 L 837 249 L 834 251 L 828 245 L 824 243 L 811 243 L 800 248 L 791 256 L 791 257 L 786 263 L 783 269 L 783 271 L 781 275 L 781 284 L 776 287 L 768 287 L 761 284 L 752 276 L 752 275 L 747 269 L 747 267 L 745 263 L 742 261 L 739 261 L 735 266 L 735 272 L 734 273 L 734 276 L 729 288 L 727 290 L 727 291 L 720 297 L 715 297 L 710 293 L 707 287 L 707 280 L 706 279 L 706 274 L 707 273 L 707 270 L 704 267 L 700 267 L 697 269 L 696 272 L 694 274 L 690 281 L 687 284 L 685 288 L 670 304 L 668 300 L 668 297 L 667 296 L 667 293 L 665 289 L 665 286 L 662 280 L 655 274 L 647 274 L 644 277 L 643 277 L 643 278 L 638 284 L 632 296 L 632 298 L 630 302 L 628 304 L 627 303 L 627 298 L 626 297 L 626 282 L 625 281 L 625 270 L 622 267 L 619 267 L 614 273 L 609 266 L 605 265 L 604 264 L 598 264 L 588 269 L 576 282 L 576 283 L 571 289 L 570 292 L 564 300 L 563 303 L 561 305 L 557 313 L 557 317 L 560 320 L 564 320 L 566 319 L 569 312 L 572 308 L 574 310 L 575 313 L 581 318 L 587 319 L 588 318 L 594 317 L 596 315 L 599 314 L 610 303 L 615 295 L 617 298 L 617 304 L 618 305 L 618 309 L 619 310 L 620 316 L 624 320 L 626 321 L 629 321 L 633 319 L 633 318 L 635 316 L 635 314 L 640 305 L 640 303 L 648 287 L 651 284 L 655 289 L 655 291 L 658 298 L 658 303 L 659 304 L 660 311 L 662 315 L 666 317 L 671 316 L 676 312 L 677 312 L 692 296 L 692 295 L 697 289 L 699 292 L 699 294 L 701 298 L 707 304 L 713 307 L 722 307 L 723 306 L 725 306 L 730 303 L 738 294 L 741 288 L 741 286 L 743 283 L 745 283 L 748 287 L 749 287 L 756 293 L 760 295 L 765 296 L 766 297 L 777 297 L 785 293 L 789 297 L 793 299 L 795 299 L 796 300 L 805 300 L 806 299 L 811 298 L 818 294 L 824 288 L 825 288 L 830 282 L 830 281 L 832 279 L 833 279 L 834 280 L 834 282 L 837 289 L 842 295 L 850 299 L 853 299 L 854 300 L 859 300 L 860 299 L 863 299 L 864 298 L 869 297 L 875 294 L 877 292 L 880 291 L 884 287 L 885 287 L 891 280 L 892 278 Z M 603 277 L 604 278 L 605 282 L 609 284 L 606 291 L 600 298 L 600 299 L 593 306 L 592 306 L 590 308 L 586 309 L 582 304 L 582 300 L 583 299 L 583 296 L 584 295 L 585 290 L 587 288 L 588 285 L 593 280 L 599 277 Z M 822 253 L 826 257 L 827 261 L 828 262 L 828 267 L 825 272 L 812 286 L 809 287 L 805 290 L 797 290 L 794 287 L 794 286 L 800 279 L 800 274 L 794 271 L 796 266 L 802 259 L 803 259 L 808 255 L 812 254 L 813 253 L 816 253 L 817 252 L 818 253 Z M 816 81 L 813 75 L 813 73 L 811 71 L 809 67 L 799 57 L 798 57 L 789 50 L 782 47 L 780 45 L 776 44 L 769 40 L 767 40 L 759 36 L 757 36 L 756 35 L 754 35 L 753 34 L 751 34 L 744 31 L 741 31 L 737 29 L 734 29 L 733 28 L 730 28 L 729 27 L 726 27 L 725 26 L 722 26 L 721 25 L 717 25 L 716 24 L 712 24 L 711 23 L 708 23 L 707 22 L 703 22 L 702 21 L 699 21 L 698 20 L 692 20 L 691 19 L 687 19 L 686 18 L 681 18 L 680 17 L 675 17 L 674 16 L 666 16 L 665 15 L 653 14 L 652 13 L 645 13 L 644 12 L 633 12 L 632 11 L 612 10 L 611 9 L 597 9 L 596 8 L 567 8 L 566 7 L 509 7 L 508 8 L 478 8 L 477 9 L 463 9 L 462 10 L 450 10 L 449 11 L 440 11 L 439 12 L 417 13 L 416 14 L 409 14 L 408 15 L 401 15 L 400 16 L 391 16 L 390 17 L 384 17 L 383 18 L 376 18 L 375 19 L 369 19 L 368 20 L 354 21 L 353 22 L 348 22 L 347 23 L 343 23 L 342 24 L 335 24 L 334 25 L 329 25 L 328 26 L 324 26 L 323 27 L 312 28 L 311 29 L 307 29 L 306 30 L 302 30 L 301 31 L 296 31 L 295 32 L 286 33 L 285 34 L 282 34 L 281 35 L 271 36 L 270 37 L 267 37 L 266 38 L 263 38 L 262 39 L 257 39 L 256 40 L 253 40 L 252 41 L 249 41 L 248 42 L 245 42 L 244 43 L 240 43 L 239 44 L 232 45 L 228 47 L 224 47 L 223 48 L 220 48 L 219 49 L 216 49 L 215 50 L 212 50 L 211 51 L 208 51 L 207 52 L 204 52 L 203 53 L 200 53 L 199 54 L 188 56 L 181 59 L 178 59 L 171 62 L 168 62 L 167 63 L 161 64 L 154 67 L 151 67 L 150 68 L 148 68 L 141 71 L 138 71 L 137 72 L 135 72 L 134 73 L 132 73 L 131 74 L 129 74 L 128 75 L 126 75 L 119 78 L 116 78 L 113 80 L 111 80 L 110 81 L 108 81 L 107 82 L 105 82 L 104 83 L 90 87 L 87 89 L 73 93 L 65 97 L 63 97 L 62 98 L 57 99 L 54 101 L 52 101 L 47 104 L 45 104 L 39 107 L 37 107 L 31 110 L 29 110 L 24 113 L 19 114 L 10 119 L 7 123 L 23 123 L 24 122 L 27 122 L 33 119 L 35 119 L 38 117 L 40 117 L 43 115 L 45 115 L 48 113 L 50 113 L 56 110 L 61 109 L 64 107 L 69 106 L 72 104 L 83 101 L 86 99 L 97 96 L 100 94 L 102 94 L 103 93 L 105 93 L 106 92 L 108 92 L 109 91 L 111 91 L 112 90 L 114 90 L 115 89 L 117 89 L 118 88 L 120 88 L 121 87 L 123 87 L 124 86 L 126 86 L 127 85 L 129 85 L 130 84 L 132 84 L 139 81 L 142 81 L 143 80 L 145 80 L 152 77 L 155 77 L 162 74 L 169 73 L 176 70 L 183 69 L 190 66 L 194 66 L 198 64 L 201 64 L 202 63 L 209 62 L 213 60 L 216 60 L 217 59 L 220 59 L 221 58 L 225 58 L 229 56 L 232 56 L 233 55 L 236 55 L 237 54 L 241 54 L 242 53 L 245 53 L 246 52 L 249 52 L 250 51 L 253 51 L 254 50 L 263 49 L 264 48 L 267 48 L 268 47 L 271 47 L 272 46 L 277 46 L 278 45 L 282 45 L 283 44 L 286 44 L 287 43 L 297 42 L 298 41 L 302 41 L 303 40 L 307 40 L 308 39 L 312 39 L 313 38 L 319 38 L 320 37 L 324 37 L 325 36 L 330 36 L 331 35 L 335 35 L 336 34 L 342 34 L 343 33 L 354 32 L 355 31 L 359 31 L 360 30 L 367 30 L 368 29 L 374 29 L 375 28 L 388 27 L 389 26 L 397 26 L 398 25 L 405 25 L 406 24 L 414 24 L 415 23 L 427 23 L 428 22 L 446 21 L 447 20 L 458 20 L 459 19 L 503 18 L 504 17 L 570 17 L 571 18 L 611 19 L 612 20 L 622 20 L 623 21 L 632 21 L 633 22 L 640 22 L 641 23 L 651 23 L 652 24 L 659 24 L 660 25 L 665 25 L 666 26 L 674 26 L 675 27 L 680 27 L 681 28 L 685 28 L 686 29 L 690 29 L 691 30 L 697 30 L 698 31 L 702 31 L 703 32 L 706 32 L 707 33 L 710 33 L 711 34 L 716 34 L 720 36 L 724 36 L 728 38 L 732 38 L 733 39 L 739 40 L 740 41 L 742 41 L 743 42 L 745 42 L 746 43 L 760 47 L 763 49 L 765 49 L 786 60 L 789 63 L 794 66 L 800 72 L 800 73 L 804 78 L 805 82 L 806 83 L 806 93 L 805 94 L 804 99 L 802 101 L 798 108 L 787 119 L 786 119 L 777 127 L 776 127 L 765 135 L 762 136 L 760 138 L 755 140 L 753 142 L 725 156 L 723 156 L 718 159 L 716 159 L 700 167 L 692 169 L 689 171 L 687 171 L 679 175 L 668 178 L 665 180 L 662 180 L 659 182 L 657 182 L 653 184 L 650 184 L 649 185 L 647 185 L 640 188 L 637 188 L 633 190 L 630 190 L 626 192 L 623 192 L 616 195 L 609 190 L 607 190 L 604 188 L 602 188 L 599 186 L 593 185 L 592 184 L 587 184 L 586 183 L 582 183 L 581 182 L 574 182 L 573 181 L 560 181 L 559 180 L 534 180 L 533 181 L 518 181 L 517 182 L 506 182 L 505 183 L 497 183 L 496 184 L 486 184 L 485 185 L 479 185 L 478 186 L 473 186 L 472 187 L 466 187 L 465 188 L 453 189 L 452 190 L 448 190 L 447 191 L 443 191 L 442 192 L 437 192 L 436 193 L 433 193 L 432 194 L 428 194 L 427 195 L 424 195 L 423 196 L 419 196 L 418 197 L 415 197 L 414 198 L 411 198 L 410 199 L 399 201 L 392 204 L 388 204 L 387 205 L 383 206 L 382 205 L 382 193 L 381 192 L 380 172 L 379 171 L 379 167 L 378 166 L 378 163 L 377 162 L 377 159 L 376 158 L 376 154 L 374 150 L 374 145 L 373 144 L 373 137 L 372 136 L 372 129 L 371 128 L 370 111 L 368 109 L 366 109 L 365 108 L 364 109 L 362 109 L 361 110 L 361 125 L 362 126 L 362 132 L 363 133 L 363 138 L 364 139 L 365 150 L 366 151 L 366 155 L 367 156 L 367 160 L 368 161 L 368 165 L 369 166 L 370 180 L 371 181 L 371 192 L 372 193 L 372 207 L 373 208 L 370 211 L 362 213 L 345 222 L 339 228 L 337 235 L 339 239 L 345 244 L 347 244 L 351 246 L 359 246 L 360 247 L 374 247 L 375 248 L 375 254 L 376 255 L 376 266 L 377 267 L 377 283 L 378 284 L 378 296 L 379 297 L 379 310 L 380 311 L 380 322 L 381 323 L 381 337 L 382 338 L 383 353 L 384 354 L 384 360 L 385 361 L 386 371 L 389 375 L 393 376 L 397 373 L 397 368 L 395 364 L 395 359 L 394 358 L 394 353 L 393 352 L 393 346 L 392 345 L 392 332 L 391 331 L 390 310 L 389 309 L 389 299 L 388 298 L 388 280 L 387 279 L 386 251 L 385 250 L 385 248 L 386 247 L 391 247 L 392 246 L 408 246 L 409 245 L 426 244 L 427 243 L 434 243 L 435 242 L 443 242 L 444 241 L 450 241 L 451 240 L 456 240 L 457 239 L 462 239 L 463 238 L 469 238 L 470 237 L 475 237 L 476 236 L 486 235 L 487 234 L 493 234 L 494 233 L 498 233 L 499 232 L 503 232 L 504 231 L 514 230 L 515 229 L 518 229 L 519 228 L 523 228 L 524 227 L 528 227 L 529 226 L 538 225 L 542 223 L 551 222 L 552 221 L 559 220 L 563 218 L 567 218 L 568 217 L 571 217 L 572 216 L 575 216 L 576 215 L 587 213 L 591 211 L 599 210 L 600 209 L 606 208 L 607 207 L 610 207 L 611 206 L 612 207 L 613 212 L 608 221 L 594 234 L 593 234 L 590 237 L 587 238 L 585 240 L 582 241 L 580 243 L 560 253 L 558 253 L 548 258 L 537 261 L 534 263 L 530 263 L 524 266 L 521 266 L 520 267 L 514 268 L 510 270 L 505 270 L 504 271 L 493 273 L 489 275 L 488 279 L 491 283 L 498 283 L 499 282 L 504 282 L 505 281 L 531 281 L 532 282 L 535 282 L 536 283 L 539 283 L 541 284 L 547 291 L 547 294 L 544 299 L 535 308 L 534 308 L 528 313 L 505 324 L 503 324 L 496 327 L 488 328 L 487 329 L 481 329 L 480 330 L 477 330 L 475 332 L 475 338 L 476 338 L 478 340 L 488 339 L 489 338 L 492 338 L 493 337 L 496 337 L 497 336 L 500 336 L 501 335 L 509 333 L 537 319 L 540 316 L 541 316 L 553 304 L 553 303 L 555 301 L 555 299 L 557 295 L 557 288 L 556 287 L 555 283 L 549 277 L 539 272 L 542 270 L 550 268 L 553 266 L 555 266 L 558 264 L 565 262 L 583 253 L 585 251 L 593 247 L 602 240 L 603 240 L 614 230 L 614 229 L 619 223 L 621 219 L 621 217 L 622 216 L 622 212 L 623 211 L 623 209 L 622 208 L 622 204 L 624 202 L 627 202 L 634 199 L 637 199 L 641 197 L 644 197 L 645 196 L 647 196 L 648 195 L 650 195 L 651 194 L 653 194 L 654 193 L 656 193 L 657 192 L 659 192 L 660 191 L 662 191 L 663 190 L 677 186 L 680 184 L 688 182 L 696 178 L 698 178 L 704 175 L 706 175 L 709 173 L 711 173 L 716 170 L 718 170 L 723 167 L 725 167 L 730 164 L 732 164 L 758 151 L 760 149 L 765 147 L 767 145 L 775 141 L 784 134 L 785 134 L 793 127 L 794 127 L 808 112 L 811 106 L 813 104 L 813 102 L 816 96 Z M 373 221 L 373 227 L 374 228 L 374 236 L 373 237 L 360 237 L 359 236 L 353 236 L 352 235 L 350 235 L 348 233 L 354 228 L 362 224 L 364 224 L 372 220 Z M 600 198 L 598 200 L 594 200 L 593 201 L 587 202 L 583 204 L 579 204 L 578 205 L 575 205 L 574 206 L 571 206 L 570 207 L 567 207 L 566 208 L 562 208 L 561 209 L 555 210 L 554 211 L 551 211 L 550 212 L 546 212 L 545 213 L 542 213 L 541 214 L 537 214 L 536 215 L 533 215 L 532 216 L 528 216 L 527 217 L 523 217 L 522 218 L 518 218 L 517 219 L 513 219 L 512 220 L 508 220 L 507 221 L 503 221 L 502 222 L 497 222 L 496 223 L 491 223 L 490 224 L 486 224 L 485 225 L 480 225 L 479 226 L 475 226 L 474 227 L 468 227 L 467 228 L 455 229 L 454 230 L 449 230 L 448 231 L 441 231 L 440 232 L 434 232 L 433 233 L 427 233 L 426 234 L 418 234 L 417 235 L 405 235 L 404 236 L 393 236 L 392 237 L 386 237 L 384 235 L 384 219 L 383 218 L 385 216 L 392 214 L 393 213 L 395 213 L 396 212 L 398 212 L 399 211 L 403 211 L 407 209 L 410 209 L 411 208 L 414 208 L 415 207 L 419 207 L 423 205 L 427 205 L 428 204 L 431 204 L 432 203 L 437 203 L 438 202 L 446 201 L 447 200 L 451 200 L 452 199 L 458 199 L 459 198 L 464 198 L 465 197 L 470 197 L 471 196 L 476 196 L 477 195 L 486 195 L 487 194 L 495 194 L 496 193 L 504 193 L 505 192 L 515 192 L 516 191 L 575 191 L 576 192 L 581 192 L 582 193 L 586 193 L 587 194 L 595 195 L 596 196 L 598 196 Z";
+    const BANNA_B_ONLY_PATH = "M 595 59 L 594 58 L 593 53 L 591 51 L 589 47 L 583 41 L 582 41 L 576 36 L 571 34 L 569 32 L 565 31 L 560 28 L 558 28 L 555 26 L 553 26 L 547 23 L 544 23 L 537 20 L 534 20 L 533 19 L 530 19 L 529 18 L 526 18 L 525 17 L 521 17 L 520 16 L 517 16 L 516 15 L 512 15 L 511 14 L 507 14 L 506 13 L 502 13 L 501 12 L 489 11 L 488 10 L 482 10 L 481 9 L 464 8 L 463 7 L 453 7 L 452 6 L 440 6 L 439 5 L 422 5 L 421 4 L 359 4 L 358 5 L 339 5 L 338 6 L 326 6 L 325 7 L 315 7 L 314 8 L 302 8 L 301 9 L 294 9 L 293 10 L 285 10 L 284 11 L 277 11 L 276 12 L 269 12 L 268 13 L 255 14 L 254 15 L 249 15 L 248 16 L 243 16 L 242 17 L 231 18 L 230 19 L 226 19 L 225 20 L 220 20 L 219 21 L 215 21 L 214 22 L 210 22 L 209 23 L 204 23 L 203 24 L 200 24 L 199 25 L 195 25 L 194 26 L 190 26 L 189 27 L 181 28 L 180 29 L 177 29 L 176 30 L 172 30 L 171 31 L 168 31 L 167 32 L 164 32 L 163 33 L 160 33 L 159 34 L 156 34 L 155 35 L 152 35 L 151 36 L 148 36 L 147 37 L 136 39 L 132 41 L 129 41 L 125 43 L 122 43 L 115 46 L 112 46 L 111 47 L 109 47 L 105 49 L 102 49 L 101 50 L 99 50 L 98 51 L 96 51 L 95 52 L 93 52 L 86 55 L 83 55 L 82 56 L 77 57 L 74 59 L 72 59 L 71 60 L 69 60 L 68 61 L 54 65 L 51 67 L 43 69 L 40 71 L 35 72 L 30 75 L 25 76 L 22 78 L 20 78 L 17 80 L 10 82 L 1 87 L 0 89 L 12 89 L 13 88 L 18 87 L 21 85 L 23 85 L 26 83 L 28 83 L 34 80 L 36 80 L 39 78 L 44 77 L 47 75 L 55 73 L 58 71 L 60 71 L 61 70 L 75 66 L 78 64 L 80 64 L 87 61 L 90 61 L 91 60 L 93 60 L 94 59 L 96 59 L 97 58 L 99 58 L 106 55 L 109 55 L 113 53 L 116 53 L 117 52 L 123 51 L 127 49 L 130 49 L 134 47 L 137 47 L 138 46 L 149 44 L 153 42 L 156 42 L 157 41 L 160 41 L 161 40 L 164 40 L 165 39 L 168 39 L 169 38 L 173 38 L 174 37 L 182 36 L 183 35 L 186 35 L 187 34 L 190 34 L 191 33 L 195 33 L 196 32 L 200 32 L 201 31 L 205 31 L 206 30 L 210 30 L 211 29 L 215 29 L 216 28 L 220 28 L 221 27 L 226 27 L 227 26 L 231 26 L 232 25 L 237 25 L 238 24 L 249 23 L 250 22 L 256 22 L 257 21 L 263 21 L 264 20 L 276 19 L 277 18 L 284 18 L 285 17 L 292 17 L 293 16 L 302 16 L 303 15 L 312 15 L 313 14 L 323 14 L 324 13 L 336 13 L 337 12 L 355 12 L 356 11 L 422 11 L 423 12 L 439 12 L 440 13 L 452 13 L 453 14 L 471 15 L 472 16 L 479 16 L 480 17 L 486 17 L 487 18 L 499 19 L 500 20 L 510 21 L 511 22 L 515 22 L 516 23 L 519 23 L 520 24 L 524 24 L 525 25 L 532 26 L 536 28 L 539 28 L 540 29 L 554 33 L 572 42 L 574 44 L 575 44 L 585 54 L 588 61 L 588 66 L 584 75 L 574 86 L 573 86 L 565 93 L 564 93 L 559 97 L 556 98 L 551 102 L 527 114 L 525 114 L 518 118 L 516 118 L 511 121 L 509 121 L 501 125 L 496 126 L 493 128 L 491 128 L 490 129 L 488 129 L 487 130 L 485 130 L 484 131 L 482 131 L 481 132 L 479 132 L 478 133 L 476 133 L 475 134 L 473 134 L 466 137 L 463 137 L 459 139 L 456 139 L 449 142 L 437 136 L 431 135 L 430 134 L 426 134 L 425 133 L 420 133 L 419 132 L 407 132 L 406 131 L 388 131 L 387 132 L 371 132 L 370 133 L 352 134 L 351 135 L 345 135 L 344 136 L 338 136 L 337 137 L 326 138 L 325 139 L 321 139 L 320 140 L 311 141 L 310 142 L 307 142 L 306 143 L 302 143 L 301 144 L 298 144 L 297 145 L 294 145 L 293 146 L 290 146 L 289 147 L 286 147 L 285 148 L 277 150 L 276 149 L 276 145 L 275 144 L 275 132 L 274 131 L 274 125 L 273 124 L 273 120 L 272 119 L 272 116 L 271 115 L 271 111 L 270 110 L 270 106 L 269 105 L 269 99 L 268 98 L 268 93 L 267 92 L 267 81 L 263 78 L 260 80 L 260 88 L 261 89 L 261 96 L 262 97 L 263 108 L 264 109 L 264 113 L 265 114 L 265 118 L 266 119 L 266 123 L 267 124 L 267 132 L 268 133 L 268 150 L 269 152 L 259 157 L 257 157 L 247 163 L 245 165 L 243 169 L 243 173 L 245 175 L 245 176 L 251 179 L 255 179 L 256 180 L 269 180 L 271 182 L 271 193 L 272 194 L 272 207 L 273 208 L 273 220 L 274 221 L 274 235 L 275 236 L 276 256 L 277 257 L 277 263 L 278 264 L 279 272 L 280 274 L 284 275 L 286 274 L 287 271 L 286 270 L 286 267 L 285 266 L 285 263 L 284 262 L 284 256 L 283 255 L 283 243 L 282 242 L 282 231 L 281 230 L 281 219 L 280 218 L 280 205 L 279 204 L 279 190 L 278 189 L 278 181 L 279 180 L 298 179 L 299 178 L 308 178 L 309 177 L 316 177 L 317 176 L 332 175 L 333 174 L 338 174 L 339 173 L 350 172 L 351 171 L 361 170 L 362 169 L 366 169 L 367 168 L 371 168 L 372 167 L 376 167 L 377 166 L 386 165 L 387 164 L 390 164 L 391 163 L 395 163 L 396 162 L 399 162 L 400 161 L 403 161 L 404 160 L 407 160 L 408 159 L 411 159 L 412 158 L 415 158 L 416 157 L 419 157 L 420 156 L 423 156 L 424 155 L 427 155 L 428 154 L 431 154 L 432 153 L 435 153 L 436 152 L 439 152 L 440 151 L 443 151 L 444 150 L 446 154 L 443 160 L 433 170 L 432 170 L 424 176 L 421 177 L 419 179 L 409 184 L 407 184 L 402 187 L 397 188 L 394 190 L 392 190 L 388 192 L 385 192 L 384 193 L 382 193 L 375 196 L 372 196 L 371 197 L 368 197 L 367 198 L 363 198 L 362 199 L 358 199 L 354 202 L 354 205 L 357 207 L 359 207 L 360 206 L 367 206 L 368 205 L 384 205 L 385 206 L 389 206 L 390 207 L 392 207 L 397 212 L 397 215 L 394 220 L 383 229 L 369 236 L 367 236 L 360 239 L 353 240 L 352 241 L 346 241 L 344 243 L 344 247 L 345 248 L 353 248 L 354 247 L 358 247 L 359 246 L 362 246 L 363 245 L 368 244 L 390 233 L 393 230 L 394 230 L 403 220 L 403 218 L 404 217 L 404 210 L 403 209 L 403 207 L 398 202 L 391 199 L 393 197 L 404 194 L 409 191 L 411 191 L 423 185 L 425 183 L 428 182 L 430 180 L 437 176 L 441 172 L 442 172 L 446 168 L 446 167 L 451 161 L 451 159 L 452 158 L 452 154 L 453 153 L 452 149 L 454 147 L 456 147 L 460 145 L 463 145 L 467 143 L 470 143 L 471 142 L 473 142 L 474 141 L 476 141 L 477 140 L 479 140 L 480 139 L 494 135 L 497 133 L 502 132 L 505 130 L 507 130 L 510 128 L 517 126 L 522 123 L 529 121 L 538 116 L 540 116 L 542 114 L 562 104 L 575 94 L 576 94 L 581 89 L 582 89 L 589 81 L 594 72 L 594 69 L 595 68 Z M 269 162 L 269 165 L 270 166 L 270 172 L 269 173 L 257 173 L 256 172 L 253 172 L 251 170 L 254 167 L 266 161 L 268 161 Z M 436 144 L 434 146 L 431 146 L 430 147 L 427 147 L 426 148 L 423 148 L 422 149 L 419 149 L 418 150 L 415 150 L 414 151 L 411 151 L 410 152 L 407 152 L 406 153 L 403 153 L 402 154 L 399 154 L 398 155 L 394 155 L 393 156 L 385 157 L 384 158 L 376 159 L 375 160 L 371 160 L 370 161 L 365 161 L 364 162 L 359 162 L 358 163 L 354 163 L 353 164 L 342 165 L 341 166 L 337 166 L 336 167 L 330 167 L 329 168 L 323 168 L 322 169 L 316 169 L 315 170 L 309 170 L 308 171 L 288 172 L 287 173 L 278 173 L 277 172 L 277 160 L 276 159 L 278 157 L 280 157 L 287 154 L 290 154 L 291 153 L 294 153 L 295 152 L 298 152 L 299 151 L 302 151 L 303 150 L 306 150 L 307 149 L 310 149 L 311 148 L 315 148 L 316 147 L 325 146 L 326 145 L 331 145 L 332 144 L 337 144 L 338 143 L 344 143 L 345 142 L 352 142 L 353 141 L 373 140 L 374 139 L 418 139 L 419 140 L 429 141 Z";
+
+    // Curated SVG Art Plates in Dark Noisy Burgundy & Crisp White
+    function makeArtPlateDataUri(titleText, accentHex) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+        <defs>
+          <filter id="plateNoise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.08  0 0 0 0 0  0 0 0 0 0.02  0 0 0 0.28 0"/>
+          </filter>
+        </defs>
+        <rect width="800" height="500" fill="${accentHex}"/>
+        <rect width="800" height="500" filter="url(#plateNoise)"/>
+        <rect x="28" y="28" width="744" height="444" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity="0.55"/>
+        <path d="M 60 390 C 260 280, 540 430, 740 310" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.4"/>
+        <path d="M 90 415 C 300 315, 560 440, 720 340" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.65"/>
+        <g transform="translate(240, 115) scale(0.52)">
+          <path d="${BANNA_B_ONLY_PATH}" fill="#FFFFFF" fill-rule="evenodd" opacity="0.96"/>
+        </g>
+        <text x="400" y="435" text-anchor="middle" fill="#FFFFFF" font-family="Cormorant, Georgia, serif" font-style="italic" font-size="22" letter-spacing="3">${titleText}</text>
+      </svg>`;
+      return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+    }
+
+    const colorPalettes = {
+      indigo: {
+        name: "Dark Burgundy (#520014 & #800020)",
+        boxBurgundy: "#520014",
+        mainBurgundy: "#800020"
+      },
+      emerald: {
+        name: "Deep Oxblood (#460011 & #6B001B)",
+        boxBurgundy: "#460011",
+        mainBurgundy: "#6B001B"
+      },
+      amber: {
+        name: "Velvet Wine (#5C0016 & #800020)",
+        boxBurgundy: "#5C0016",
+        mainBurgundy: "#800020"
+      },
+      rose: {
+        name: "Mulberry Noir (#4A0013 & #750D27)",
+        boxBurgundy: "#4A0013",
+        mainBurgundy: "#750D27"
+      },
+      cyan: {
+        name: "Bordeaux Ink (#3D000F & #630018)",
+        boxBurgundy: "#3D000F",
+        mainBurgundy: "#630018"
+      }
+    };
+
+    const logoCaptions = {
+      hexagon: "Pure Free-Floating Signature",
+      crown: "Animated Signature + Amano Silk Line",
+      orbital: "Animated Signature + Minimalist Deco Line",
+      slash: "Animated Signature + Yohji Echo"
+    };
+
+    const defaultProjects = [
+      {
+        id: 1,
+        title: "On Shadow & Poetic Asymmetry",
+        category: "Design",
+        roman: "I",
+        tagColor: "border border-white/40 text-white",
+        icon: "B",
+        photo: makeArtPlateDataUri("NOTE I · SHADOW & ASYMMETRY", "#3D000F"),
+        description: "Why Yohji Yamamoto's silhouettes and Yoshitaka Amano's fine ink lines feel so restful: they honor empty space and raw woven texture as much as the stroke itself.",
+        likes: 34,
+        liked: false,
+        date: "Published Recently"
+      },
+      {
+        id: 2,
+        title: "Woven Linen (#D2C5B4) & Burgundy (#800020)",
+        category: "Design",
+        roman: "II",
+        tagColor: "border border-white/40 text-white",
+        icon: "B",
+        photo: makeArtPlateDataUri("NOTE II · WOVEN LINEN & #800020", "#4A0012"),
+        description: "Notes on pairing tiny, whisper-soft woven #D2C5B4 linen threads with dark noisy burgundy interiors and crisp white Cormorant typography.",
+        likes: 29,
+        liked: false,
+        date: "Published Recently"
+      },
+      {
+        id: 3,
+        title: "The Return of Personal Salons",
+        category: "Web App",
+        roman: "III",
+        tagColor: "border border-white/40 text-white",
+        icon: "B",
+        photo: makeArtPlateDataUri("NOTE III · PUBLIC SALON", "#3D000F"),
+        description: "Before feeds and algorithms, personal websites were quiet rooms where visitors viewed photographs, read essays, and left thoughtful guest notes.",
+        likes: 25,
+        liked: false,
+        date: "Published Recently"
+      }
+    ];
+
+    const defaultSkills = [
+      "Yohji Yamamoto Shadow & Asymmetry",
+      "Yoshitaka Amano Celestial Ink Work",
+      "Quiet Art Deco"
+    ];
+
+    const defaultGuestbook = [
+      {
+        id: 101,
+        author: "Sora T.",
+        topic: "Guest Request",
+        text: "The tiny, soft woven fabric background (#D2C5B4) with the dark noisy burgundy boxes and crisp white text feels so refined and comfortable to read.",
+        hearts: 9,
+        photo: ""
+      },
+      {
+        id: 102,
+        author: "Nadia K.",
+        topic: "Art & Aesthetics",
+        text: "Love how the white Cormorant typography and signature 'B' pop cleanly inside the noisy dark burgundy cards.",
+        hearts: 7,
+        photo: ""
+      }
+    ];
+
+    let starterProjects = JSON.parse(JSON.stringify(defaultProjects));
+    let userSkills = [...defaultSkills];
+    let guestbookEntries = JSON.parse(JSON.stringify(defaultGuestbook));
+    let currentFilter = "all";
+    let isDarkMode = true;
+    let currentLogoStyle = "crown";
+    let currentPalette = "indigo";
+    let currentVibe = "glass";
+    let isVisitorMode = false;
+    let currentPage = "home";
+    let pendingJournalPhotoData = "";
+    let pendingGuestPhotoData = "";
+    const moods = ["Nocturnal Calm", "Woven Linen & Burgundy", "In Praise of Texture", "Oxblood Ink (#800020)"];
+    let moodIdx = 0;
+
+    // Grab HTML elements by their ID
+    const inputName = document.getElementById("input-name");
+    const inputRole = document.getElementById("input-role");
+    const inputEmail = document.getElementById("input-email");
+    const inputBio = document.getElementById("input-bio");
+    const displayName = document.getElementById("display-name");
+    const navName = document.getElementById("nav-name");
+    const footerName = document.getElementById("footer-name");
+    const displayRole = document.getElementById("display-role");
+    const displayEmail = document.getElementById("display-email");
+    const displayBio = document.getElementById("display-bio");
+    const avatarBadge = document.getElementById("avatar-badge");
+    const heroInitials = document.getElementById("hero-initials");
+    const navSvgHolder = document.getElementById("nav-svg-holder");
+    const heroSvgHolder = document.getElementById("hero-svg-holder");
+    const logoWordmark = document.getElementById("logo-wordmark");
+    const logoStyleCaption = document.getElementById("logo-style-caption");
+    const cycleLogoBtn = document.getElementById("cycle-logo-btn");
+    const replaySigBtn = document.getElementById("replay-sig-btn");
+    const statProjectsCount = document.getElementById("stat-projects-count");
+    const statSkillsCount = document.getElementById("stat-skills-count");
+    const projectsGrid = document.getElementById("projects-grid");
+    const homeLatestJournalPreview = document.getElementById("home-latest-journal-preview");
+    const homeSalonPreviewAuthor = document.getElementById("home-salon-preview-author");
+    const homeSalonPreviewTopic = document.getElementById("home-salon-preview-topic");
+    const homeSalonPreviewText = document.getElementById("home-salon-preview-text");
+    const customizePanel = document.getElementById("customize-panel");
+    const explainerCard = document.getElementById("explainer-card");
+    const toggleCustomizeBtn = document.getElementById("toggle-customize-btn");
+    const visitorModeBtn = document.getElementById("visitor-mode-btn");
+    const resetProfileBtn = document.getElementById("reset-profile-btn");
+    const navbar = document.getElementById("navbar");
+    const mobileBottomNav = document.getElementById("mobile-bottom-nav");
+    const skillsList = document.getElementById("skills-list");
+    const addSkillForm = document.getElementById("add-skill-form");
+    const skillInput = document.getElementById("skill-input");
+    const toggleAddProjectBtn = document.getElementById("toggle-add-project-btn");
+    const addProjectForm = document.getElementById("add-project-form");
+    const closeProjectFormBtn = document.getElementById("close-project-form-btn");
+    const projTitleInput = document.getElementById("proj-title-input");
+    const projCategoryInput = document.getElementById("proj-category-input");
+    const projDescInput = document.getElementById("proj-desc-input");
+    const projPhotoFile = document.getElementById("proj-photo-file");
+    const projPhotoUrl = document.getElementById("proj-photo-url");
+    const projPhotoPreviewWrap = document.getElementById("proj-photo-preview-wrap");
+    const projPhotoPreviewImg = document.getElementById("proj-photo-preview-img");
+    const clearPhotoBtn = document.getElementById("clear-photo-btn");
+    const copyEmailBtn = document.getElementById("copy-email-btn");
+    const downloadHtmlBtn = document.getElementById("download-html-btn");
+    const toastBanner = document.getElementById("toast-banner");
+    const toastText = document.getElementById("toast-text");
+    const projectModal = document.getElementById("project-modal");
+    const modalProjIcon = document.getElementById("modal-proj-icon");
+    const modalProjCat = document.getElementById("modal-proj-cat");
+    const modalProjTitle = document.getElementById("modal-proj-title");
+    const modalProjDesc = document.getElementById("modal-proj-desc");
+    const modalPhotoWrap = document.getElementById("modal-photo-wrap");
+    const modalPhotoImg = document.getElementById("modal-photo-img");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+    const modalDoneBtn = document.getElementById("modal-done-btn");
+    const guestbookForm = document.getElementById("guestbook-form");
+    const guestName = document.getElementById("guest-name");
+    const guestTopic = document.getElementById("guest-topic");
+    const guestPhotoFile = document.getElementById("guest-photo-file");
+    const guestMsg = document.getElementById("guest-msg");
+    const guestbookList = document.getElementById("guestbook-list");
+    const moodCycleBtn = document.getElementById("mood-cycle-btn");
+    const moodText = document.getElementById("mood-text");
+
+    // All 'B' Monograms inside Dark Burgundy Boxes are Crisp White (#FFFFFF)
+    function buildBMonogramSvg(colorHex) {
+      const fill = colorHex || "#FFFFFF";
+      return `<svg viewBox="0 0 600 276" class="w-full h-full overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="${BANNA_B_ONLY_PATH}" fill="${fill}" fill-rule="evenodd" /></svg>`;
+    }
+
+    function populateAllBMonograms() {
+      document.querySelectorAll(".b-title-slot").forEach(el => {
+        el.innerHTML = buildBMonogramSvg("#FFFFFF");
+      });
+      document.querySelectorAll(".b-mini-slot").forEach(el => {
+        el.innerHTML = buildBMonogramSvg("#FFFFFF");
+      });
+    }
+
+    function showToast(message) {
+      toastText.textContent = message;
+      toastBanner.classList.remove("hidden");
+      setTimeout(() => {
+        toastBanner.classList.add("hidden");
+      }, 2800);
+    }
+
+    if (projPhotoFile) {
+      projPhotoFile.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingJournalPhotoData = ev.target.result;
+          projPhotoPreviewImg.src = pendingJournalPhotoData;
+          projPhotoPreviewWrap.classList.remove("hidden");
+          clearPhotoBtn.classList.remove("hidden");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    if (projPhotoUrl) {
+      projPhotoUrl.addEventListener("input", () => {
+        const urlVal = projPhotoUrl.value.trim();
+        if (urlVal) {
+          pendingJournalPhotoData = urlVal;
+          projPhotoPreviewImg.src = urlVal;
+          projPhotoPreviewWrap.classList.remove("hidden");
+          clearPhotoBtn.classList.remove("hidden");
+        }
+      });
+    }
+
+    if (clearPhotoBtn) {
+      clearPhotoBtn.addEventListener("click", () => {
+        pendingJournalPhotoData = "";
+        if (projPhotoFile) projPhotoFile.value = "";
+        if (projPhotoUrl) projPhotoUrl.value = "";
+        projPhotoPreviewWrap.classList.add("hidden");
+        clearPhotoBtn.classList.add("hidden");
+      });
+    }
+
+    if (guestPhotoFile) {
+      guestPhotoFile.addEventListener("change", (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          pendingGuestPhotoData = ev.target.result;
+          showToast("Photo attached to guest request");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // MULTI-PAGE NAVIGATION
+    function switchPage(pageKey) {
+      currentPage = pageKey;
+      document.querySelectorAll(".page-view").forEach(pageEl => {
+        const isTarget = pageEl.getAttribute("data-page") === pageKey;
+        if (isTarget) {
+          pageEl.classList.add("active-page");
+          pageEl.querySelectorAll(".gradual-title").forEach(titleEl => {
+            titleEl.style.animation = "none";
+            void titleEl.offsetHeight;
+            titleEl.style.animation = "";
+          });
+          pageEl.querySelectorAll(".elegant-photo-img").forEach(imgEl => {
+            imgEl.style.animation = "none";
+            void imgEl.offsetHeight;
+            imgEl.style.animation = "";
+          });
+        } else {
+          pageEl.classList.remove("active-page");
+        }
+      });
+
+      document.querySelectorAll(".page-tab-btn").forEach(btn => {
+        const isActive = btn.getAttribute("data-goto-page") === pageKey;
+        if (isActive) {
+          btn.classList.add("active-tab");
+        } else {
+          btn.classList.remove("active-tab");
+        }
+      });
+
+      document.querySelectorAll(".mobile-tab-btn").forEach(btn => {
+        const isActive = btn.getAttribute("data-goto-page") === pageKey;
+        btn.className = isActive
+          ? "mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white font-bold border-t-2 border-white min-h-[44px]"
+          : "mobile-tab-btn page-switch-trigger flex flex-col items-center justify-center py-1.5 px-3 text-white/75 min-h-[44px]";
+      });
+
+      populateAllBMonograms();
+      navbar.classList.remove("header-hidden");
+      if (mobileBottomNav) mobileBottomNav.classList.remove("header-hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.querySelectorAll(".page-switch-trigger").forEach(trigger => {
+      trigger.addEventListener("click", () => {
+        const target = trigger.getAttribute("data-goto-page");
+        if (target) switchPage(target);
+      });
+    });
+
+    // AUTO-HIDE FIXED TOP-CENTER SIGNATURE ON SCROLL DOWN, REVEAL ON SCROLL UP
+    let lastScrollY = window.scrollY || 0;
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY || 0;
+      const delta = currentScrollY - lastScrollY;
+
+      if (currentScrollY > 40 && delta > 5) {
+        navbar.classList.add("header-hidden");
+        if (mobileBottomNav) mobileBottomNav.classList.add("header-hidden");
+      } else if (delta < -5 || currentScrollY <= 28) {
+        navbar.classList.remove("header-hidden");
+        if (mobileBottomNav) mobileBottomNav.classList.remove("header-hidden");
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+
+    moodCycleBtn.addEventListener("click", () => {
+      moodIdx = (moodIdx + 1) % moods.length;
+      moodText.textContent = moods[moodIdx];
+      showToast("Atmosphere: " + moods[moodIdx]);
+    });
+
+    document.querySelectorAll(".work-toggle-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = btn.getAttribute("data-work-idx");
+        const detail = document.getElementById("work-detail-" + idx);
+        if (detail) {
+          detail.classList.toggle("hidden");
+        }
+      });
+    });
+
+    // Build Free-Floating Vector SVG of BANNA's Handwritten Signature
+    // Top-center floating signature on #D2C5B4 woven fabric is Noisy #800020 Burgundy;
+    // Hero signature inside the dark noisy burgundy box is Crisp White (#FFFFFF)!
+    function buildLogoSvg(style, isNav) {
+      if (isNav) {
+        return `
+          <svg viewBox="0 0 900 384" class="w-full h-full overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Banna Vector Signature">
+            <path d="${BANNA_SIGNATURE_PATH}" fill="#800020" filter="url(#burgundy-noise-filter)" fill-rule="evenodd" />
+          </svg>
+        `;
+      }
+
+      const mainFill = "#FFFFFF";
+      const subFill = "rgba(255, 255, 255, 0.55)";
+
+      if (style === "crown") {
+        return `
+          <svg viewBox="-20 -20 940 430" class="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Banna Animated Signature with Amano Silk Line">
+            <path d="M 40 365 C 290 415, 610 395, 860 340" stroke="${subFill}" stroke-width="2.2" fill="none" class="sig-animated-path" />
+            <path d="${BANNA_SIGNATURE_PATH}" fill="${mainFill}" stroke="#FFFFFF" stroke-width="1.8" fill-rule="evenodd" class="sig-animated-path" />
+          </svg>
+        `;
+      }
+      if (style === "orbital") {
+        return `
+          <svg viewBox="-20 -20 940 430" class="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Banna Animated Signature with Quiet Deco Lines">
+            <line x1="120" y1="370" x2="780" y2="370" stroke="${subFill}" stroke-width="1.5" />
+            <path d="${BANNA_SIGNATURE_PATH}" fill="${mainFill}" stroke="#FFFFFF" stroke-width="1.8" fill-rule="evenodd" class="sig-animated-path" />
+          </svg>
+        `;
+      }
+      if (style === "slash") {
+        return `
+          <svg viewBox="-20 -20 940 430" class="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Banna Yohji Offset Signature">
+            <g transform="translate(7, 7)">
+              <path d="${BANNA_SIGNATURE_PATH}" fill="rgba(255,255,255,0.28)" fill-rule="evenodd" />
+            </g>
+            <path d="${BANNA_SIGNATURE_PATH}" fill="${mainFill}" stroke="#FFFFFF" stroke-width="1.8" fill-rule="evenodd" class="sig-animated-path" />
+          </svg>
+        `;
+      }
+      return `
+        <svg viewBox="-10 -10 920 404" class="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Banna Pure Vector Signature">
+          <path d="${BANNA_SIGNATURE_PATH}" fill="${mainFill}" stroke="#FFFFFF" stroke-width="1.8" fill-rule="evenodd" class="sig-animated-path" />
+        </svg>
+      `;
+    }
+
+    function applyPalette(paletteKey) {
+      currentPalette = colorPalettes[paletteKey] ? paletteKey : "indigo";
+      const p = colorPalettes[currentPalette];
+      const root = document.documentElement;
+      root.style.setProperty("--box-burgundy", p.boxBurgundy);
+      root.style.setProperty("--main-burgundy", p.mainBurgundy);
+
+      document.querySelectorAll(".palette-btn").forEach(btn => {
+        const isSelected = btn.getAttribute("data-palette") === currentPalette;
+        btn.className = isSelected
+          ? "palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-ivory transition flex items-center gap-1.5"
+          : "palette-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5";
+      });
+    }
+
+    function updateLogos() {
+      const nameVal = inputName.value.trim() || "BANNA";
+      navSvgHolder.innerHTML = buildLogoSvg(currentLogoStyle, true);
+      heroSvgHolder.innerHTML = buildLogoSvg(currentLogoStyle, false);
+      logoWordmark.textContent = nameVal.slice(0, 14);
+      logoStyleCaption.textContent = logoCaptions[currentLogoStyle] || "Free-Floating Vector Signature";
+
+      document.querySelectorAll(".logo-style-btn").forEach(btn => {
+        const active = btn.getAttribute("data-logo") === currentLogoStyle;
+        btn.className = active
+          ? "logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-ivory transition flex items-center gap-1.5"
+          : "logo-style-btn text-xs sm:text-sm font-semibold px-2.5 py-2 btn-outline-visible transition flex items-center gap-1.5";
+      });
+    }
+
+    replaySigBtn.addEventListener("click", () => {
+      heroSvgHolder.innerHTML = "";
+      setTimeout(() => {
+        heroSvgHolder.innerHTML = buildLogoSvg(currentLogoStyle, false);
+        showToast("Replaying Banna signature ink draw");
+      }, 30);
+    });
+
+    function saveState() {
+      try {
+        const state = {
+          name: inputName.value,
+          role: inputRole.value,
+          email: inputEmail.value,
+          bio: inputBio.value,
+          projects: starterProjects,
+          skills: userSkills,
+          guestbook: guestbookEntries,
+          isDarkMode: isDarkMode,
+          logoStyle: currentLogoStyle,
+          palette: currentPalette,
+          vibe: currentVibe
+        };
+        localStorage.setItem("banna_woven_burgundy_v12", JSON.stringify(state));
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem("banna_woven_burgundy_v12");
+        if (!raw) return;
+        const saved = JSON.parse(raw);
+        if (saved.name) inputName.value = saved.name;
+        if (saved.role) inputRole.value = saved.role;
+        if (saved.email) inputEmail.value = saved.email;
+        if (saved.bio) inputBio.value = saved.bio;
+        if (typeof saved.isDarkMode === "boolean") isDarkMode = saved.isDarkMode;
+        if (saved.logoStyle) currentLogoStyle = saved.logoStyle;
+        if (saved.palette) currentPalette = saved.palette;
+        if (saved.vibe) currentVibe = saved.vibe;
+        if (Array.isArray(saved.projects) && saved.projects.length > 0) {
+          starterProjects = saved.projects;
+        }
+        if (Array.isArray(saved.skills) && saved.skills.length > 0) {
+          userSkills = saved.skills;
+        }
+        if (Array.isArray(saved.guestbook) && saved.guestbook.length > 0) {
+          guestbookEntries = saved.guestbook;
+        }
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    function getInitials(nameText) {
+      const parts = nameText.trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 0) return "BA";
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function updateProfile() {
+      const nameVal = inputName.value.trim() || "BANNA";
+      const roleVal = inputRole.value.trim() || "Poetic Minimalism, Line & Silence";
+      const emailVal = inputEmail.value.trim() || "banna@sanctuary.me";
+      const bioVal = inputBio.value.trim() || "Welcome to the personal space of BANNA — a living archive of visual journal entries, creative works, and open public discussions.";
+      const initials = getInitials(nameVal);
+
+      displayName.textContent = nameVal;
+      navName.textContent = nameVal;
+      footerName.textContent = nameVal;
+      displayRole.textContent = roleVal;
+      displayEmail.textContent = emailVal;
+      displayBio.textContent = bioVal;
+      avatarBadge.textContent = initials;
+      heroInitials.textContent = initials;
+      statProjectsCount.textContent = String(starterProjects.length);
+      statSkillsCount.textContent = "3";
+      document.title = nameVal;
+      updateLogos();
+      saveState();
+    }
+
+    inputName.addEventListener("input", updateProfile);
+    inputRole.addEventListener("input", updateProfile);
+    inputEmail.addEventListener("input", updateProfile);
+    inputBio.addEventListener("input", updateProfile);
+
+    document.querySelectorAll(".logo-style-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentLogoStyle = btn.getAttribute("data-logo");
+        updateLogos();
+        saveState();
+        showToast("Signature style: " + logoCaptions[currentLogoStyle]);
+      });
+    });
+
+    function cycleSignatureStyle() {
+      const order = ["hexagon", "crown", "orbital", "slash"];
+      const nextIdx = (order.indexOf(currentLogoStyle) + 1) % order.length;
+      currentLogoStyle = order[nextIdx];
+      updateLogos();
+      saveState();
+      showToast("Switched to " + logoCaptions[currentLogoStyle]);
+    }
+
+    cycleLogoBtn.addEventListener("click", cycleSignatureStyle);
+    heroSvgHolder.addEventListener("click", cycleSignatureStyle);
+
+    document.querySelectorAll(".palette-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-palette");
+        applyPalette(key);
+        updateLogos();
+        renderProjects();
+        renderSkills();
+        saveState();
+        showToast("Tone updated: " + colorPalettes[key].name);
+      });
+    });
+
+    document.querySelectorAll(".vibe-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentVibe = btn.getAttribute("data-vibe");
+        document.querySelectorAll(".vibe-btn").forEach(b => {
+          const active = b.getAttribute("data-vibe") === currentVibe;
+          b.className = active
+            ? "vibe-btn text-xs sm:text-sm font-semibold px-3 py-1.5 btn-ivory transition text-left flex items-center justify-between"
+            : "vibe-btn text-xs sm:text-sm font-semibold px-3 py-1.5 btn-outline-visible transition text-left flex items-center justify-between";
+        });
+        renderProjects();
+        saveState();
+        showToast("Card style updated");
+      });
+    });
+
+    resetProfileBtn.addEventListener("click", () => {
+      inputName.value = "BANNA";
+      inputRole.value = "Poetic Minimalism, Line & Silence";
+      inputEmail.value = "banna@sanctuary.me";
+      inputBio.value = "Welcome to the personal space of BANNA — a living archive of visual journal entries, creative works, and open public discussions.";
+      starterProjects = JSON.parse(JSON.stringify(defaultProjects));
+      userSkills = [...defaultSkills];
+      guestbookEntries = JSON.parse(JSON.stringify(defaultGuestbook));
+      currentLogoStyle = "crown";
+      currentPalette = "indigo";
+      currentVibe = "glass";
+      applyPalette("indigo");
+      updateProfile();
+      renderProjects();
+      renderSkills();
+      renderGuestbook();
+      showToast("Reset to BANNA defaults");
+    });
+
+    toggleCustomizeBtn.addEventListener("click", () => {
+      const isHidden = customizePanel.classList.toggle("hidden");
+      toggleCustomizeBtn.textContent = isHidden ? "Customize Info" : "Hide Studio";
+    });
+
+    visitorModeBtn.addEventListener("click", () => {
+      isVisitorMode = !isVisitorMode;
+      if (isVisitorMode) {
+        customizePanel.classList.add("hidden");
+        toggleCustomizeBtn.classList.add("hidden");
+        toggleAddProjectBtn.classList.add("hidden");
+        addProjectForm.classList.add("hidden");
+        visitorModeBtn.textContent = "✏️ Edit Site";
+        showToast("Visitor View active — ready for visitors");
+      } else {
+        toggleCustomizeBtn.classList.remove("hidden");
+        toggleAddProjectBtn.classList.remove("hidden");
+        visitorModeBtn.textContent = "👁 Visitor View";
+        showToast("Edit controls restored");
+      }
+      renderProjects();
+      renderGuestbook();
+    });
+
+    toggleAddProjectBtn.addEventListener("click", () => {
+      addProjectForm.classList.toggle("hidden");
+    });
+    closeProjectFormBtn.addEventListener("click", () => {
+      addProjectForm.classList.add("hidden");
+    });
+
+    addProjectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = projTitleInput.value.trim();
+      const category = projCategoryInput.value;
+      const description = projDescInput.value.trim();
+      if (!title || !description) return;
+
+      const photoToUse = pendingJournalPhotoData || makeArtPlateDataUri(title.toUpperCase().slice(0, 22), "#3D000F");
+
+      starterProjects.unshift({
+        id: Date.now(),
+        title,
+        category,
+        roman: String(starterProjects.length + 1),
+        tagColor: "border border-white/40 text-white",
+        icon: "B",
+        photo: photoToUse,
+        description,
+        likes: 1,
+        liked: true,
+        date: "Just Published"
+      });
+
+      projTitleInput.value = "";
+      projDescInput.value = "";
+      pendingJournalPhotoData = "";
+      if (projPhotoFile) projPhotoFile.value = "";
+      if (projPhotoUrl) projPhotoUrl.value = "";
+      if (projPhotoPreviewWrap) projPhotoPreviewWrap.classList.add("hidden");
+      if (clearPhotoBtn) clearPhotoBtn.classList.add("hidden");
+      addProjectForm.classList.add("hidden");
+      updateProfile();
+      renderProjects();
+      showToast("Published to Journal & Home Preview: " + title);
+    });
+
+    function openProjectModal(project) {
+      modalProjIcon.innerHTML = buildBMonogramSvg("#FFFFFF");
+      modalProjCat.textContent = "JOURNAL NOTE " + (project.roman || "");
+      modalProjTitle.textContent = project.title;
+      modalProjDesc.textContent = project.description;
+      if (project.photo) {
+        modalPhotoImg.src = project.photo;
+        modalPhotoWrap.classList.remove("hidden");
+        modalPhotoImg.style.animation = "none";
+        void modalPhotoImg.offsetHeight;
+        modalPhotoImg.style.animation = "";
+      } else {
+        modalPhotoWrap.classList.add("hidden");
+      }
+      projectModal.classList.remove("hidden");
+    }
+
+    closeModalBtn.addEventListener("click", () => projectModal.classList.add("hidden"));
+    modalDoneBtn.addEventListener("click", () => projectModal.classList.add("hidden"));
+
+    // Build Journal Card HTML (Inside of Box is Dark Burgundy with Noise & Crisp White Text)
+    function buildJournalCardHtml(project, index, cardStyleClass) {
+      const romanLabel = project.roman || String(index + 1);
+      const shelfLabel = project.category === "Design" ? "Aesthetics" : "Reflections";
+      const delayClass = "delay-" + ((index % 3) + 1);
+      const photoHtml = project.photo ? `
+        <div class="elegant-photo-frame aspect-[16/10] w-full mb-5 cursor-pointer view-proj-photo" data-view-id="${project.id}">
+          <img src="${project.photo}" alt="${project.title}" class="elegant-photo-img" loading="lazy" />
+        </div>
+      ` : "";
+
+      return `
+        <article class="${cardStyleClass} p-6 sm:p-7 flex flex-col justify-between relative text-white">
+          <span class="deco-tick-tl"></span><span class="deco-tick-br"></span>
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4 pb-2 border-b border-white/20">
+              <span class="font-cormorant-sc text-xs font-bold tracking-[0.24em] text-white/80">NOTE ${romanLabel}</span>
+              <span class="font-cormorant italic text-base text-white/85">${shelfLabel}</span>
+            </div>
+
+            ${photoHtml}
+
+            <div class="flex items-center gap-3 mb-2.5">
+              <span class="w-8 h-6 shrink-0 inline-flex items-center" aria-hidden="true">${buildBMonogramSvg("#FFFFFF")}</span>
+              <h3 class="gradual-title ${delayClass} font-cormorant font-bold text-2xl sm:text-3xl tracking-wide leading-snug text-white">${project.title}</h3>
+            </div>
+
+            <p class="font-cormorant text-lg sm:text-xl text-white/90 leading-relaxed">${project.description}</p>
+          </div>
+
+          <div class="pt-4 mt-5 border-t border-white/20 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <button type="button" data-view-id="${project.id}" class="view-proj-btn font-cormorant-sc text-xs font-bold uppercase tracking-[0.18em] text-white hover:text-white/80 underline min-h-[36px]">Read Note →</button>
+              ${isVisitorMode ? '' : `<button type="button" data-delete-id="${project.id}" class="delete-proj-btn font-cormorant-sc text-xs uppercase tracking-wider text-white/75 hover:text-white transition min-h-[36px]">Remove</button>`}
+            </div>
+            <button type="button" data-like-id="${project.id}" class="like-btn font-cormorant-sc text-xs font-semibold px-3 py-1.5 border border-white/40 ${project.liked ? 'btn-ivory' : 'text-white'} transition flex items-center gap-2 min-h-[36px]">
+              <span class="w-4 h-3 inline-flex items-center">${buildBMonogramSvg("#FFFFFF")}</span>
+              <span>${project.likes}</span>
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function attachJournalCardListeners() {
+      document.querySelectorAll(".view-proj-btn, .view-proj-photo").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = Number(btn.getAttribute("data-view-id"));
+          const proj = starterProjects.find(p => p.id === id);
+          if (proj) openProjectModal(proj);
+        });
+      });
+
+      document.querySelectorAll(".like-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = Number(btn.getAttribute("data-like-id"));
+          const proj = starterProjects.find(p => p.id === id);
+          if (proj) {
+            proj.liked = !proj.liked;
+            proj.likes += proj.liked ? 1 : -1;
+            saveState();
+            renderProjects();
+          }
+        });
+      });
+
+      document.querySelectorAll(".delete-proj-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = Number(btn.getAttribute("data-delete-id"));
+          starterProjects = starterProjects.filter(p => p.id !== id);
+          updateProfile();
+          renderProjects();
+          showToast("Journal note removed");
+        });
+      });
+    }
+
+    function renderProjects() {
+      const visible = currentFilter === "all"
+        ? starterProjects
+        : starterProjects.filter(p => p.category === currentFilter);
+
+      let cardStyleClass = "comfortable-card";
+      if (currentVibe === "bento") {
+        cardStyleClass = "yohji-card";
+      } else if (currentVibe === "neon") {
+        cardStyleClass = "comfortable-card border-t-2 border-t-white";
+      }
+
+      projectsGrid.innerHTML = visible.map((project, index) => buildJournalCardHtml(project, index, cardStyleClass)).join("");
+
+      if (homeLatestJournalPreview) {
+        const latestThree = starterProjects.slice(0, 3);
+        homeLatestJournalPreview.innerHTML = latestThree.map((project, index) => buildJournalCardHtml(project, index, cardStyleClass)).join("");
+      }
+
+      attachJournalCardListeners();
+    }
+
+    function renderSkills() {
+      if (!skillsList) return;
+      skillsList.innerHTML = userSkills.map((skill, idx) => `
+        <button type="button" data-skill-idx="${idx}" class="skill-chip font-cormorant text-lg px-3 py-1 border border-white/40 text-white">${skill}</button>
+      `).join("");
+    }
+
+    if (addSkillForm) {
+      addSkillForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+    }
+
+    function renderGuestbook() {
+      guestbookList.innerHTML = guestbookEntries.map((entry, idx) => {
+        const guestPhotoHtml = entry.photo ? `
+          <div class="elegant-photo-frame h-40 w-full sm:w-64 my-2.5">
+            <img src="${entry.photo}" alt="Guest attachment" class="elegant-photo-img" />
+          </div>
+        ` : "";
+        return `
+        <div class="p-5 noisy-burgundy-inset border-l-2 border-white/70 hover:border-white transition-all space-y-2 text-white">
+          <div class="flex items-center justify-between text-xs font-cormorant-sc uppercase tracking-[0.18em] text-white/80">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-3.5 inline-flex items-center">${buildBMonogramSvg("#FFFFFF")}</span>
+              <span class="text-white font-bold">${entry.author}</span>
+              <span class="px-2 py-0.5 bg-[#800020] border border-white/30 text-[10px] text-white">Published</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span>${entry.topic || 'Guest Request'}</span>
+              <button type="button" data-guest-like="${idx}" class="guest-heart-btn text-xs text-white hover:text-white/80 border border-white/40 px-2 py-0.5 transition">
+                + ${entry.hearts || 1}
+              </button>
+              ${isVisitorMode ? '' : `<button type="button" data-guest-del="${idx}" class="guest-del-btn text-xs text-white/70 hover:text-white">✕</button>`}
+            </div>
+          </div>
+          ${guestPhotoHtml}
+          <p class="font-cormorant italic text-lg sm:text-xl text-white leading-relaxed">"${entry.text}"</p>
+        </div>
+      `}).join("");
+
+      if (guestbookEntries.length > 0 && homeSalonPreviewAuthor) {
+        const newest = guestbookEntries[0];
+        homeSalonPreviewAuthor.textContent = newest.author;
+        homeSalonPreviewTopic.textContent = newest.topic || "Published Request";
+        homeSalonPreviewText.textContent = '"' + newest.text + '"';
+      }
+
+      document.querySelectorAll(".guest-heart-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = Number(btn.getAttribute("data-guest-like"));
+          if (guestbookEntries[idx]) {
+            guestbookEntries[idx].hearts = (guestbookEntries[idx].hearts || 1) + 1;
+            saveState();
+            renderGuestbook();
+          }
+        });
+      });
+
+      document.querySelectorAll(".guest-del-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = Number(btn.getAttribute("data-guest-del"));
+          guestbookEntries.splice(idx, 1);
+          saveState();
+          renderGuestbook();
+          showToast("Removed guest entry");
+        });
+      });
+    }
+
+    guestbookForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const author = guestName.value.trim();
+      const topic = guestTopic ? guestTopic.value : "Guest Request";
+      const text = guestMsg.value.trim();
+      if (!author || !text) return;
+      guestbookEntries.unshift({
+        id: Date.now(),
+        author,
+        topic,
+        text,
+        hearts: 1,
+        photo: pendingGuestPhotoData || ""
+      });
+      guestName.value = "";
+      guestMsg.value = "";
+      pendingGuestPhotoData = "";
+      if (guestPhotoFile) guestPhotoFile.value = "";
+      saveState();
+      renderGuestbook();
+      showToast("Published to Public Space & Home Preview!");
+    });
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentFilter = btn.getAttribute("data-filter");
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          const active = b.getAttribute("data-filter") === currentFilter;
+          b.className = active
+            ? "filter-btn font-cormorant-sc text-xs font-bold uppercase tracking-wider px-3.5 py-2 btn-ivory transition min-h-[40px]"
+            : "filter-btn font-cormorant-sc text-xs font-bold uppercase tracking-wider px-3.5 py-2 btn-outline-visible transition min-h-[40px]";
+        });
+        renderProjects();
+      });
+    });
+
+    copyEmailBtn.addEventListener("click", () => {
+      const emailText = displayEmail.textContent;
+      const tempInput = document.createElement("textarea");
+      tempInput.value = emailText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand("copy");
+        showToast("Copied: " + emailText);
+      } catch (e) {
+        showToast("Contact: " + emailText);
+      }
+      document.body.removeChild(tempInput);
+    });
+
+    downloadHtmlBtn.addEventListener("click", () => {
+      customizePanel.classList.add("hidden");
+      toggleCustomizeBtn.textContent = "Customize Info";
+      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      const blob = new Blob([fullHtml], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "index.html";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded publishable index.html!");
+    });
+
+    ["sidebar-edge-trigger", "close-sidebar-btn", "top-open-sidebar-btn", "motion-mode-btn", "theme-btn"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", () => switchPage("home"));
+    });
+
+    loadState();
+    populateAllBMonograms();
+    applyPalette(currentPalette);
+    updateProfile();
+    renderProjects();
+    renderSkills();
+    renderGuestbook();
+  </script>
+</body>
+</html>
