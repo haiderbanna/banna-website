@@ -1,5 +1,6 @@
 {
-  "updatedAt": "2026-11-07T00:00:00Z",
+  "updatedAt": "2026-11-07T17:13:00Z",
+  "homeDisplayMode": "recent",
   "roleText": "WRITE the UNWRITTEN",
   "bioText": "Welcome to the personal space of BANNA \u2014 a living archive of visual journal entries, creative works, and open public discussions.",
   "heroPhoto": "",
@@ -12,6 +13,8 @@
   "workPosts": [
     {
       "id": 501,
+      "createdAt": 0,
+      "showOnHome": false,
       "title": "SQM (BW8)",
       "category": "December 2025 \u00b7 Public Gallery, Baghdad Walk",
       "photo": "",
